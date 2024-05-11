@@ -7,12 +7,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import LockIcon from "@mui/icons-material/Lock";
+import { UserInfoContext } from "../../../contexts/UserInfoContext";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -41,7 +42,8 @@ const Login = () => {
           alert("비밀번호를 입력해 주세요");
           return;
         default:
-          console.log("전송"); //전송
+          console.log("전송"); //통신
+          //맞으면 사용자 정보 받아오기
           setCookie("user", { id });
           navigate("/Main");
           return;

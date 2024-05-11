@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   TableContainer,
   Table,
@@ -11,11 +11,9 @@ import {
   Button,
   Box,
 } from "@mui/material";
-
 const OrderManage = () => {
   const [depositor, setDepositor] = useState(""); // 입금자명
   const [amount, setAmount] = useState(""); // 입금 금액
-
   const orders = [
     { id: 1, food: "어묵탕 외 3건", depositor: "배준재", amount: 20000 },
     { id: 2, food: "닭발 외 2건", depositor: "김호진", amount: 15000 },

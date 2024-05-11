@@ -64,7 +64,7 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
                   disabled={isMyPage}
                   variant="standard"
                   value={userData.id}
-                  // onChange={}
+                  onChange={handleChange}
                   sx={{ marginBottom: "30px", maxWidth: "600px" }}
                   InputProps={{
                     startAdornment: (
