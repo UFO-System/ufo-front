@@ -4,7 +4,7 @@ import OrderPage1 from './OrderPage1';
 import Container from '@mui/material/Container';
 import {useLocation, useNavigate} from 'react-router-dom'
 import Button from '@mui/material/Button';
-import "./OrderPage.css"
+import "./css/OrderPage.css"
 
 const OrderPage2 = () => {
   

@@ -7,7 +7,7 @@ import {useNavigate} from 'react-router-dom'
 import { Input as BaseInput } from '@mui/base/Input';
 import { styled } from '@mui/system';
 import Input from '@mui/material/Input';
-import "./OrderPage.css"
+import "./css/OrderPage.css"
 
 const OrderPage1 = () => {
   
