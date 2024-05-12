@@ -75,7 +75,6 @@ const OrderPage1 = () => {
   };
 
   return (
-    <Container fixed>
       <div className="app">
 
         {/* 로고 */}
@@ -165,6 +164,7 @@ const OrderPage1 = () => {
           <p>{price3} 원</p>
         </div>
         {/* 음식 수량, 가격 계산 */}
+        <div style={{position: "fixed", bottom: 0 ,width: "100%"}}>
         <div className="bottom">
           <h4>
             총 수량: {count1 + count2 + count3}개 | 총 금액:{" "}
@@ -180,21 +180,21 @@ const OrderPage1 = () => {
             <Button
               className="orderBt"
               onClick={() => {
-                navigate("/OrderPage2", {
-                  state: {
-                    total: price1 * count1 + price2 * count2 + price3 * count3,
-                    name: name,
-                  },
-                });
-              }}
+                if (value === '') {
+                  alert('테이블 넘버를 입력해주세요');
+                } else {
+                  console.log('입력값:', value);{navigate('/OrderPage2', 
+                  {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name,
+                   value:value
+                  }})}}}}
               style={{ color: "white", boxShadow: "1px 1px 5px black" }}
             >
               주문하기
             </Button>
           </center>
         </AppBar>
+        </div>
       </div>
-    </Container>
   );
 };
 export default OrderPage1;
