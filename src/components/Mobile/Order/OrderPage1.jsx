@@ -180,13 +180,13 @@ const OrderPage1 = () => {
             <Button
               className="orderBt"
               onClick={() => {
-                if (value === '') {
-                  alert('테이블 넘버를 입력해주세요');
-                } else {
-                  console.log('입력값:', value);{navigate('/OrderPage2', 
-                  {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name,
-                   value:value
-                  }})}}}}
+                navigate("/OrderPage2", {
+                  state: {
+                    total: price1 * count1 + price2 * count2 + price3 * count3,
+                    name: name,
+                  },
+                });
+              }}
               style={{ color: "white", boxShadow: "1px 1px 5px black" }}
             >
               주문하기
