@@ -1,9 +1,13 @@
-import React from "react";
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import AppBar from "@mui/material/AppBar";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { useState } from 'react';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import AppBar from '@mui/material/AppBar';
+import {useNavigate} from 'react-router-dom'
+import { Input as BaseInput } from '@mui/base/Input';
+import { styled } from '@mui/system';
+import Input from '@mui/material/Input';
+import { useHistory } from 'react-router-dom';
 import "./css/OrderPage.css";
 
 const OrderPage1 = () => {
@@ -59,12 +63,38 @@ const OrderPage1 = () => {
   // 페이지 전환
   const navigate = useNavigate();
 
+  // 경고창
+  const [value, setValue] = useState('');
+  const [showWarning, setShowWarning] = useState(false);
+    
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
+    setValue(inputValue);
+    // 입력값이 없는 경우에는 경고창을 표시합니다.
+    setShowWarning(inputValue === '');
+  };
+
   return (
     <Container fixed>
       <div className="app">
+
+        {/* 로고 */}
         <AppBar position="static">
           <h4 className="name">{name}</h4>
         </AppBar>
+
+        {/* 테이블 넘버 입력과 경고창 */}
+        <Input 
+        className='input'
+        placeholder="테이블 넘버를 입력하세요."
+        type="text"
+        value={value}
+        onChange={handleChange}
+        />
+      {showWarning && <p style={{ color: 'red' }}>테이블 넘버를 입력해주세요.</p>}
+      <hr></hr>
+
+      {/* 메뉴 */}
         <div className="menu">
           <h5>
             {menu1} {count1} 개
@@ -134,6 +164,7 @@ const OrderPage1 = () => {
           </h5>
           <p>{price3} 원</p>
         </div>
+        {/* 음식 수량, 가격 계산 */}
         <div className="bottom">
           <h4>
             총 수량: {count1 + count2 + count3}개 | 총 금액:{" "}
@@ -144,6 +175,7 @@ const OrderPage1 = () => {
           position="static"
           style={{ height: "80px", paddingTop: "15px", display: "flex" }}
         >
+        {/* 화면 전환 */}
           <center>
             <Button
               className="orderBt"
