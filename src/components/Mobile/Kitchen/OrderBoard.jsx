@@ -3,12 +3,24 @@ import "./css/KitchenPage.css";
 import { Box } from "@mui/material";
 
 const OrderBoard = ({ order_id }) => {
+  const menuNameLength = (menuName) => {
+    if (menuName.length >= 6) {
+      return (
+        <>
+          {menuName.substring(0, 6)}
+        </>
+      );
+    } else {
+      return menuName;
+    }
+  };
+
   return (
     <Box
       sx={{
         position: "relative",
         border: "3px solid #3C2A2C",
-        width: "23.9vw",
+        width: "23.5vw",
         height: "85vh",
         borderRadius: 5,
         display: "inline-block",
@@ -45,8 +57,8 @@ const OrderBoard = ({ order_id }) => {
         </tr>
         <tr>
           <td colSpan="3">
-            {order_id.menu_name}{" "}
-            {order_id.order_cnt == 1 ? "" : order_id.order_cnt}
+            {menuNameLength(order_id.menu_name)}{" "}
+            {order_id.order_cnt === 1 ? "" : order_id.order_cnt}
           </td>
         </tr>
       </table>
