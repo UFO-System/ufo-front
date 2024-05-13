@@ -23,9 +23,9 @@ const OrderPage2 = () => {
       <h4 className='name'>{name}</h4>
       </AppBar>
       <div className='menu'>
+        <p> 테이블: {value}</p>
         <p> 총 가격: {total} 원</p>
         <p> 계좌번호: {number}</p>
-        <p> 테이블: {value}</p>
       </div>
       <div style={{position: "fixed", bottom: 0 ,width: "100%"}}>
       <AppBar position="static" 
