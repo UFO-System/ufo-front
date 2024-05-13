@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./css/Phone.css";
 
@@ -12,10 +12,9 @@ const Phone = () => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           gap: "2vh",
-          p: "1vh",
           alignItems: "center",
           justifyContent: "center",
-          width: "96%",
+          width: "100%",
           minHeight: "98vh",
         }}
       >
@@ -27,14 +26,14 @@ const Phone = () => {
             width: "95%",
           }}
         >
-          주문화면
+          <Typography variant="h3">주문화면</Typography>
         </Button>
         <Button
           variant="contained"
           onClick={() => navigate("/KitchenPage")}
           sx={{ height: "48vh", width: "95%" }}
         >
-          부엌화면
+          <Typography variant="h3">부엌화면</Typography>
         </Button>
       </Box>
     </div>
