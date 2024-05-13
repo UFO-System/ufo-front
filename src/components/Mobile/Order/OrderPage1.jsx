@@ -126,10 +126,16 @@ const OrderPage1 = () => {
       if (value === '') {
         alert('테이블 넘버를 입력해주세요');  
       } else {
-        console.log('입력값:', value);{navigate('/OrderPage2', 
-        {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name,
-         value:value
-        }})}}}}
+        if (window.confirm('주문하시겠습니까?')) {
+          // 사용자가 '예'를 선택한 경우 실행할 코드
+          console.log('입력값:', value);{navigate('/OrderPage2', 
+          {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value:value}}
+          )}
+        } else {
+          // 사용자가 '아니요'를 선택한 경우 실행할 코드
+          
+        }
+        }}}
       style={{color: 'white', boxShadow:'1px 1px 5px black'}}> 
       주문하기</Button>
       </center>
