@@ -64,7 +64,7 @@ const OrderPage1 = () => {
   // 페이지 전환
   const navigate = useNavigate();
 
-  // 경고창
+  // 입금자 이름 경고창
   const [value1, setValue1] = useState('');
   const [showWarning1, setShowWarning1] = useState(false);
   
@@ -75,7 +75,7 @@ const OrderPage1 = () => {
     setShowWarning1(inputValue1 === '');
   };
 
-    // 경고창2
+    // 테이블 넘버 경고창
     const [value2, setValue2] = useState('');
     const [showWarning2, setShowWarning2] = useState(false);
     
@@ -102,8 +102,8 @@ const OrderPage1 = () => {
         type="text"
         value={value1}
         onChange={handleChange1}/>
-      {showWarning2 && <p style={{ color: 'red' }}>입금자 이름을 입력해주세요.</p>}
-      {/* 테이블 넘버 텍스틑 상자 */}
+      {showWarning1 && <p style={{ color: 'red' }}>입금자 이름을 입력해주세요.</p>}
+      {/* 테이블 넘버 */}
       <Input 
         className='input'
         placeholder="테이블 넘버를 입력하세요."
@@ -141,17 +141,17 @@ const OrderPage1 = () => {
       style={{height:'80px', paddingTop:'15px', display:'flex'}}>
       <center>
       <Button className='orderBt' onClick={()=>{
-      if (value1 === '') {
-        alert('입금자 명을 입력해주세요');  
+      if (value1 === '') { // 입금자 명을 입력 안 했을 경우
+        alert('입금자 이름을 입력해주세요');  
       } else {
-          if (value2 === ''){
+          if (value2 === ''){ // 테이블 넘버를 입력 안 했을 경우
             alert('테이블 넘버를 입력해주세요.')
           }else{
             if (window.confirm('주문하시겠습니까?')) {
               // 사용자가 '예'를 선택한 경우 실행할 코드
               console.log('입력값:', value1);
               {navigate('/OrderPage2', 
-              {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value1:value1}}
+              {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value2 : value2}}
               )}
             } else {
               // 사용자가 '아니요'를 선택한 경우 실행할 코드

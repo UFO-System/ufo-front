@@ -10,9 +10,10 @@ const OrderPage2 = () => {
   
   const location = useLocation();
   console.log(location);
-  const total= location.state.total;
-  const name = location.state.name
-  const value1 = location.state.value
+  const total= location.state.total; // 총가격
+  const name = location.state.name // 로고 이름
+  const value1 = location.state.value1 // 입금자 명
+  const value2 = location.state.value2 // 테이블 넘버
 
   const number = ' 농협 12345678900000'
   const navigate =useNavigate();
@@ -23,7 +24,8 @@ const OrderPage2 = () => {
       <h4 className='name'>{name}</h4>
       </AppBar>
       <div className='menu'>
-        <p> 테이블: {value1}</p>
+        <p> 입금자 명: {value1}</p>
+        <p> 테이블: {value2}</p>
         <p> 총 가격: {total} 원</p>
         <p> 계좌번호: {number}</p>
       </div>
