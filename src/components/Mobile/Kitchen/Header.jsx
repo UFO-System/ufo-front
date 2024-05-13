@@ -3,7 +3,7 @@ import "./css/KitchenPage.css";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
 
-const Footer = () => {
+const Header = () => {
   return (
     <div>
       <Button
@@ -11,9 +11,9 @@ const Footer = () => {
         size="large"
         sx={{
           position: "absolute",
-          bottom: "5vh",
+          top: "1vh",
           left: "5vw",
-          width: "20vw",
+          width: "15vw",
           height: "7vh",
           borderRadius: 5,
           "&hover": {
@@ -28,31 +28,13 @@ const Footer = () => {
         {" "}
         주문 되돌리기
       </Button>
-      <Box
-        sx={{
-          color: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          fontSize: "30px",
-          position: "absolute",
-          bottom: "3.5vh",
-          left: "35%",
-          width: "30vw",
-          height: "10vh",
-          borderRadius: 5,
-          bgcolor: "#7AA2E3",
-        }}
-      >
-        UFO
-      </Box>
       <Button
         variant="contained"
         sx={{
           position: "absolute",
-          bottom: "5vh",
-          right: "5vw",
-          width: "9vw",
+          top: "1vh",
+          right: "6vw",
+          width: "8vw",
           height: "7vh",
           borderRadius: 5,
           "&hover": {
@@ -70,9 +52,9 @@ const Footer = () => {
         variant="contained"
         sx={{
           position: "absolute",
-          bottom: "5vh",
+          top: "1vh",
           right: "15vw",
-          width: "9vw",
+          width: "8vw",
           height: "7vh",
           borderRadius: 5,
           "&hover": {
@@ -90,4 +72,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Header;
