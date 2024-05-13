@@ -34,7 +34,7 @@ const OrderPage2 = () => {
       <Button className='orderBt' 
       style={{color: 'white', boxShadow:'1px 1px 5px black'}}
       onClick={()=>{navigate(-1)}}>
-      뒤로</Button>
+      주문완료</Button>
       </center>
       </AppBar>
       </div>
