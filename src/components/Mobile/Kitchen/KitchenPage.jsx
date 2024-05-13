@@ -1,6 +1,6 @@
 import "./css/KitchenPage.css";
 import OrderBoard from "./OrderBoard";
-import Header from "./Footer";
+import Header from "./Header";
 import data from "./data.json";
 import LogoutTopBar from "../../Desktop/commons/TopBar/LogoutTopBar";
 
