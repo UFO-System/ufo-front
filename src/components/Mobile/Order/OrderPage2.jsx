@@ -12,7 +12,7 @@ const OrderPage2 = () => {
   console.log(location);
   const total= location.state.total;
   const name = location.state.name
-  const value = location.state.value
+  const value1 = location.state.value
 
   const number = ' 농협 12345678900000'
   const navigate =useNavigate();
@@ -23,7 +23,7 @@ const OrderPage2 = () => {
       <h4 className='name'>{name}</h4>
       </AppBar>
       <div className='menu'>
-        <p> 테이블: {value}</p>
+        <p> 테이블: {value1}</p>
         <p> 총 가격: {total} 원</p>
         <p> 계좌번호: {number}</p>
       </div>

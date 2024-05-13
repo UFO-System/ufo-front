@@ -65,15 +65,26 @@ const OrderPage1 = () => {
   const navigate = useNavigate();
 
   // 경고창
-  const [value, setValue] = useState('');
-  const [showWarning, setShowWarning] = useState(false);
+  const [value1, setValue1] = useState('');
+  const [showWarning1, setShowWarning1] = useState(false);
   
-  const handleChange = (e) => {
-  const inputValue = e.target.value;
-    setValue(inputValue);
+  const handleChange1 = (e) => {
+  const inputValue1 = e.target.value;
+    setValue1(inputValue1);
     // 입력값이 없는 경우에는 경고창을 표시합니다.
-    setShowWarning(inputValue === '');
+    setShowWarning1(inputValue1 === '');
   };
+
+    // 경고창2
+    const [value2, setValue2] = useState('');
+    const [showWarning2, setShowWarning2] = useState(false);
+    
+    const handleChange2 = (e) => {
+    const inputValue2 = e.target.value;
+      setValue2(inputValue2);
+      // 입력값이 없는 경우에는 경고창을 표시합니다.
+      setShowWarning2(inputValue2 === '');
+    };
 
 
 
@@ -84,15 +95,22 @@ const OrderPage1 = () => {
     <AppBar position="static">
       <h4 className='name'>{name}&nbsp;&nbsp;&nbsp;</h4>
     </AppBar>
+    {/* 입금자 명 */}
+      <Input 
+        className='input'
+        placeholder="입금자 이름을 입력하세요."
+        type="text"
+        value={value1}
+        onChange={handleChange1}/>
+      {showWarning2 && <p style={{ color: 'red' }}>입금자 이름을 입력해주세요.</p>}
       {/* 테이블 넘버 텍스틑 상자 */}
       <Input 
         className='input'
         placeholder="테이블 넘버를 입력하세요."
         type="text"
-        value={value}
-        onChange={handleChange}
-        />
-      {showWarning && <p style={{ color: 'red' }}>테이블 넘버를 입력해주세요.</p>}
+        value={value2}
+        onChange={handleChange2}/>
+      {showWarning2 && <p style={{ color: 'red' }}>테이블 넘버를 입력해주세요.</p>}
       <hr></hr>
       {/* 음식 메뉴 */}
       <div className='menu'>
@@ -123,19 +141,22 @@ const OrderPage1 = () => {
       style={{height:'80px', paddingTop:'15px', display:'flex'}}>
       <center>
       <Button className='orderBt' onClick={()=>{
-      if (value === '') {
-        alert('테이블 넘버를 입력해주세요');  
+      if (value1 === '') {
+        alert('입금자 명을 입력해주세요');  
       } else {
-        if (window.confirm('주문하시겠습니까?')) {
-          // 사용자가 '예'를 선택한 경우 실행할 코드
-          console.log('입력값:', value);{navigate('/OrderPage2', 
-          {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value:value}}
-          )}
-        } else {
-          // 사용자가 '아니요'를 선택한 경우 실행할 코드
-          
-        }
-        }}}
+          if (value2 === ''){
+            alert('테이블 넘버를 입력해주세요.')
+          }else{
+            if (window.confirm('주문하시겠습니까?')) {
+              // 사용자가 '예'를 선택한 경우 실행할 코드
+              console.log('입력값:', value1);
+              {navigate('/OrderPage2', 
+              {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value1:value1}}
+              )}
+            } else {
+              // 사용자가 '아니요'를 선택한 경우 실행할 코드
+            }}
+          }}}
       style={{color: 'white', boxShadow:'1px 1px 5px black'}}> 
       주문하기</Button>
       </center>
