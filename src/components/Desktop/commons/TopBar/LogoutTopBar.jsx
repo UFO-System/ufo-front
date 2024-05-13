@@ -6,7 +6,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { AppBar } from "@mui/material";
 import "./css/TopBar.css";
-import UFO from "../../../../assets/UFO.png";
+import Icon from "@mdi/react";
+import { mdiUfoOutline } from "@mdi/js";
 function LogoutTopBar({ children }) {
   return (
     <div className="notLoginTopBar">
@@ -14,7 +15,7 @@ function LogoutTopBar({ children }) {
         <Container maxWidth="xl" sx={{ margin: "0" }}>
           <Toolbar disableGutters>
             <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-              <img src={UFO} style={{ width: "43px", height: "43px" }} />
+              <Icon path={mdiUfoOutline} size={1.8} />
             </Box>
             <Typography
               variant="h6"
@@ -46,7 +47,7 @@ function LogoutTopBar({ children }) {
               </IconButton>
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
-              <img src={UFO} style={{ width: "43px", height: "43px" }} />
+              <Icon path={mdiUfoOutline} size={1.8} />
             </Box>
             <Typography
               variant="h5"

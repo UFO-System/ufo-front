@@ -12,7 +12,8 @@ import { useCookies } from "react-cookie";
 import { AppBar, Divider } from "@mui/material";
 import "./css/TopBar.css";
 import { useState } from "react";
-import UFO from "../../../../assets/UFO.png";
+import Icon from "@mdi/react";
+import { mdiUfoOutline } from "@mdi/js";
 const menuLists = ["주문 관리", "메뉴 관리", "매출 관리"];
 const pages = ["OrderManage", "RecipeManage", "SalesManage"];
 function TopBar({ children }) {
@@ -39,7 +40,7 @@ function TopBar({ children }) {
         <Container maxWidth="xl" sx={{ margin: "0" }}>
           <Toolbar disableGutters>
             <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-              <img src={UFO} style={{ width: "43px", height: "43px" }} />
+              <Icon path={mdiUfoOutline} size={1.8} />
             </Box>
             <Typography
               variant="h6"
@@ -101,7 +102,7 @@ function TopBar({ children }) {
               </Menu>
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
-              <img src={UFO} style={{ width: "43px", height: "43px" }} />
+              <Icon path={mdiUfoOutline} size={2} />
             </Box>
             <Typography
               variant="h5"
