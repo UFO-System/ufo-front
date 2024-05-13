@@ -151,7 +151,7 @@ const OrderPage1 = () => {
               // 사용자가 '예'를 선택한 경우 실행할 코드
               console.log('입력값:', value1);
               {navigate('/OrderPage2', 
-              {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value2 : value2}}
+              {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value1 : value1 , value2 : value2}}
               )}
             } else {
               // 사용자가 '아니요'를 선택한 경우 실행할 코드
