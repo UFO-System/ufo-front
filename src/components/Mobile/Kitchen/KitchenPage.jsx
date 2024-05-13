@@ -1,17 +1,19 @@
 import "./css/KitchenPage.css";
 import OrderBoard from "./OrderBoard";
-import Footer from "./Footer";
+import Header from "./Footer";
 import data from "./data.json";
+import LogoutTopBar from "../../Desktop/commons/TopBar/LogoutTopBar";
 
 function KitchenPage() {
   return (
     <>
+      <LogoutTopBar />
+      <Header />
       <body className="kitchenBody">
         {data.table1.map((exams) => (
           <OrderBoard order_id={exams} />
         ))}
       </body>
-      <Footer />
     </>
   );
 }
