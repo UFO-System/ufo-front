@@ -13,8 +13,8 @@ const Footer = () => {
           position: "absolute",
           bottom: "5vh",
           left: "5vw",
-          width: 300,
-          height: 50,
+          width: "20vw",
+          height: "7vh",
           borderRadius: 5,
           "&hover": {
             backgroundColor: "#4285f4",
@@ -38,8 +38,8 @@ const Footer = () => {
           position: "absolute",
           bottom: "3.5vh",
           left: "35%",
-          width: 500,
-          height: 70,
+          width: "30vw",
+          height: "10vh",
           borderRadius: 5,
           bgcolor: "#7AA2E3",
         }}
@@ -52,8 +52,8 @@ const Footer = () => {
           position: "absolute",
           bottom: "5vh",
           right: "5vw",
-          width: 150,
-          height: 50,
+          width: "9vw",
+          height: "7vh",
           borderRadius: 5,
           "&hover": {
             backgroundColor: "#4285f4",
@@ -72,8 +72,8 @@ const Footer = () => {
           position: "absolute",
           bottom: "5vh",
           right: "15vw",
-          width: 150,
-          height: 50,
+          width: "9vw",
+          height: "7vh",
           borderRadius: 5,
           "&hover": {
             backgroundColor: "#4285f4",
