@@ -5,11 +5,7 @@ import { Box } from "@mui/material";
 const OrderBoard = ({ order_id }) => {
   const menuNameLength = (menuName) => {
     if (menuName.length >= 6) {
-      return (
-        <>
-          {menuName.substring(0, 6)}
-        </>
-      );
+      return <>{menuName.substring(0, 6)}</>;
     } else {
       return menuName;
     }
@@ -21,7 +17,7 @@ const OrderBoard = ({ order_id }) => {
         position: "relative",
         border: "3px solid #3C2A2C",
         width: "23.5vw",
-        height: "85vh",
+        height: "80vh",
         borderRadius: 5,
         display: "inline-block",
         top: "1vh",
