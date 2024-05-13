@@ -97,20 +97,20 @@ const OrderPage1 = () => {
       {/* 음식 메뉴 */}
       <div className='menu'>
         <h5>{menu1} {count1} 개 
-        <Button variant="contained" onClick={minus1} style={{background:'red'}}> - </Button>
-        <Button variant="contained" onClick={plus1}> + </Button></h5>
+        <Button className = 'btn' variant="contained" onClick={minus1} style={{background:'red'}}> - </Button>
+        <Button className = 'btn' variant="contained" onClick={plus1}> + </Button></h5>
         <p>{price1} 원</p>
       </div>
       <div className='menu'>
         <h5>{menu2} {count2} 개 
-        <Button variant="contained" onClick={minus2} style={{background:'red'}}> - </Button>
-        <Button variant="contained" onClick={plus2}> + </Button></h5>
+        <Button className = 'btn' variant="contained" onClick={minus2} style={{background:'red'}}> - </Button>
+        <Button className = 'btn' variant="contained" onClick={plus2}> + </Button></h5>
         <p>{price2} 원</p>
       </div>
       <div className='menu'>
         <h5>{menu3} {count3} 개 
-        <Button variant="contained" onClick={minus3} style={{background:'red'}}> - </Button>
-        <Button variant="contained" onClick={plus3}> + </Button></h5>
+        <Button className = 'btn' variant="contained" onClick={minus3} style={{background:'red'}}> - </Button>
+        <Button className = 'btn' variant="contained" onClick={plus3}> + </Button></h5>
         <p>{price3} 원</p>
       </div>
       {/* 음식 수량, 금액 계산 */}

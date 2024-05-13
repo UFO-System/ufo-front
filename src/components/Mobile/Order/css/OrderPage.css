@@ -1,10 +1,6 @@
 .app{
   text-align: center;
 }
-h4{
-  text-align: left;
-  padding-left: 20px;
-}
 .name{
   display: flex;
   flex-direction: column;
@@ -19,7 +15,7 @@ h4{
   padding-left: 20px;
   text-align: left;
 }
-Button{
+.btn{
   float:right;
   margin: 5px;
 }
