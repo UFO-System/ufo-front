@@ -2,7 +2,7 @@ import React from "react";
 import "./css/KitchenPage.css";
 import { Box } from "@mui/material";
 
-const OrderBoard = ({ order_id }) => {
+const OrderBoard = ({ tableNo, values }) => {
   const menuNameLength = (menuName) => {
     if (menuName.length >= 6) {
       return <>{menuName.substring(0, 6)}</>;
@@ -17,11 +17,11 @@ const OrderBoard = ({ order_id }) => {
         position: "relative",
         border: "3px solid #3C2A2C",
         width: "23.5vw",
-        height: "85vh",
+        height: "88vh",
         borderRadius: 5,
         display: "inline-block",
-        top: "-2vh",
-        left: `2vw`,
+        top: "-1vh",
+        left: `1.5vw`,
         margin: 1,
         boxSizing: "border-box",
         "&:hover": {
@@ -36,7 +36,7 @@ const OrderBoard = ({ order_id }) => {
       }}
     >
       <table className="kitchenTable">
-        <tr>
+          <tr>
           <div
             style={{
               fontSize: "18px",
@@ -46,17 +46,21 @@ const OrderBoard = ({ order_id }) => {
               fontWeight: "bolder",
             }}
           >
-            <span>Order No.</span> <span>0030</span>
+            <span>Order No.</span> <span>{values[0].order_id}</span>
             <br />
-            <span>Table No.</span> <span>8</span>
+            <span>Table No.</span> <span>{tableNo}</span>
           </div>
         </tr>
-        <tr>
-          <td colSpan="3">
-            {menuNameLength(order_id.menu_name)}{" "}
-            {order_id.order_cnt === 1 ? "" : order_id.order_cnt}
-          </td>
-        </tr>
+        
+        
+        {values.map((order, index) => (
+            <tr key={index}>
+              <td colSpan="3">
+                {menuNameLength(order.menu_name)}{" "}
+                {order.order_cnt === 1 ? "" : order.order_cnt}
+              </td>
+            </tr>
+          ))}
       </table>
     </Box>
   );

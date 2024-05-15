@@ -16,7 +16,7 @@ const Header = () => {
           width: "15vw",
           height: "5vh",
           borderRadius: 5,
-          "&hover": {
+          "&:hover": {
             backgroundColor: "#4285f4",
           },
           "&:not(:hover)": {
@@ -37,7 +37,7 @@ const Header = () => {
           width: "8vw",
           height: "5vh",
           borderRadius: 5,
-          "&hover": {
+          "&:hover": {
             backgroundColor: "#4285f4",
           },
           "&:not(:hover)": {
@@ -57,7 +57,7 @@ const Header = () => {
           width: "8vw",
           height: "5vh",
           borderRadius: 5,
-          "&hover": {
+          "&:hover": {
             backgroundColor: "#4285f4",
           },
           "&:not(:hover)": {

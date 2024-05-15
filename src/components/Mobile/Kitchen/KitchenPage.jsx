@@ -1,3 +1,4 @@
+import React from "react";
 import "./css/KitchenPage.css";
 import OrderBoard from "./OrderBoard";
 import Header from "./Header";
@@ -10,8 +11,8 @@ function KitchenPage() {
       <LogoutTopBar />
       <Header />
       <body className="kitchenBody">
-        {data.table1.map((exams) => (
-          <OrderBoard order_id={exams} />
+        {Object.entries(data).map(([key, values]) => (
+          <OrderBoard key={key} tableNo ={key} values={values} />
         ))}
       </body>
     </>
