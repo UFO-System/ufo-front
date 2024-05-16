@@ -33,8 +33,8 @@ const Header = () => {
         sx={{
           position: "absolute",
           top: "1vh",
-          right: "6vw",
-          width: "8vw",
+          right: "7vw",
+          width: "10vw",
           height: "5vh",
           borderRadius: 5,
           "&:hover": {
@@ -53,8 +53,8 @@ const Header = () => {
         sx={{
           position: "absolute",
           top: "1vh",
-          right: "15vw",
-          width: "8vw",
+          right: "18vw",
+          width: "10vw",
           height: "5vh",
           borderRadius: 5,
           "&:hover": {

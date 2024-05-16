@@ -22,7 +22,7 @@ const OrderBoard = ({ tableNo, values }) => {
         display: "inline-block",
         top: "-1vh",
         left: `1.5vw`,
-        margin: 1,
+        margin: "0.4%",
         boxSizing: "border-box",
         "&:hover": {
           backgroundColor: "#8A7E72",
