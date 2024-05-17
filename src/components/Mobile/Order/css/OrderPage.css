@@ -23,6 +23,7 @@
   width: 120px;
   height: 50px;
   float: none;
+  margin: 10px;
 }
 .bottom{
   border-bottom: 1px solid black;

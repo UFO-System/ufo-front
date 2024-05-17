@@ -34,6 +34,17 @@ const OrderPage2 = () => {
       style={{height:'80px', paddingTop:'15px', display:'flex'}}>
       <center>
       <Button className='orderBt' 
+      style={{color: 'white', boxShadow:'1px 1px 5px black', background : 'red', margin:'5px'}}
+      onClick={()=>{
+        if(window.confirm('주문을 취소 하시겠습니까?')){
+          navigate(-1)
+        }
+        else{
+          //아니요
+        }
+      }}>
+      주문취소</Button>
+      <Button className='orderBt' 
       style={{color: 'white', boxShadow:'1px 1px 5px black'}}
       onClick={()=>{navigate(-1)}}>
       주문완료</Button>
