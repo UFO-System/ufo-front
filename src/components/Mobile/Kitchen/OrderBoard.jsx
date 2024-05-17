@@ -39,7 +39,7 @@ const OrderBoard = ({ tableNo, values }) => {
           <tr>
           <div
             style={{
-              fontSize: "18px",
+              fontSize: "25px",
               width: "100%",
               height: "100%",
               padding: "5px",
