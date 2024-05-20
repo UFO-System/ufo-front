@@ -24,11 +24,11 @@ export default function Register() {
   const validate = () => {
     let newErrors = {
       id: userData.id === "",
-      pw: userData.pw === "",
       pwCheck: userData.pwCheck !== userData.pw,
       userName: userData.userName === "",
       account: userData.account === "",
       phoneNumber: userData.phoneNumber.length !== 11,
+      pw: userData.pw === "",
     };
 
     setErrors(newErrors);
@@ -78,7 +78,7 @@ export default function Register() {
       </Button>
       <UserInfoForm
         isMyPage={false}
-        editState={true}
+        isEdit={true}
         errors={errors}
         handleChange={handleChange}
         userData={userData}

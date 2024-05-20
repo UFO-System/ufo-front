@@ -4,19 +4,29 @@ import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function MyPage() {
-  const [editState, setEditState] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [isMyPage] = useState(true);
   const [pwCheck, setPwCheck] = useState("");
   const navigate = useNavigate();
+  const [newPw, setNewPw] = useState("");
 
+  //서버통신
+  const serverData = {
+    id: "hojin",
+    pw: "rlaghwls",
+    userName: "김호진",
+    account: "95000020000",
+    phoneNumber: "01011111111",
+  };
   //기본 정보 통신으로 받아와야함
   const [userData, setUserData] = useState({
-    id: "홍길동",
+    id: serverData.id,
     pw: "",
     pwCheck: "",
-    userName: "",
-    account: "",
-    phoneNumber: "",
+    userName: serverData.userName,
+    account: serverData.account,
+    phoneNumber: serverData.phoneNumber,
+    newPw: "",
   });
 
   const [errors, setErrors] = useState({
@@ -26,12 +36,13 @@ export default function MyPage() {
     userName: false,
     account: false,
     phoneNumber: false,
+    newPw: false,
   });
   const validate = () => {
     let newErrors = {
       id: userData.id === "",
       pw: userData.pw === "",
-      pwCheck: userData.pwCheck !== userData.pw,
+      pwCheck: userData.pw === "" ? false : userData.pwCheck !== userData.newPw,
       userName: userData.userName === "",
       account: userData.account === "",
       phoneNumber: userData.phoneNumber.length !== 11,
@@ -45,6 +56,7 @@ export default function MyPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+      //전송하기전에 변경할 비밀번호가 비어있는지 확인해야함
       alert("수정되었습니다.");
       console.log(userData);
       navigate("/OrderManage");
@@ -66,7 +78,7 @@ export default function MyPage() {
   };
   //수정모드에서 수정버튼 클릭시
   const Edit = () => {
-    setEditState(!editState);
+    setIsEdit(!isEdit);
   };
   return (
     <div>
@@ -86,7 +98,7 @@ export default function MyPage() {
           paddingRight: "10px",
         }}
       >
-        {editState ? (
+        {isEdit ? (
           ""
         ) : (
           <Button
@@ -102,16 +114,18 @@ export default function MyPage() {
       </div>
       <UserInfoForm
         isMyPage={isMyPage}
-        editState={editState}
-        setEditState={setEditState}
+        isEdit={isEdit}
+        setisEdit={setIsEdit}
         errors={errors}
         handleChange={handleChange}
         userData={userData}
         pwCheck={pwCheck}
         setPwCheck={setPwCheck}
+        newPw={newPw}
+        setNewPw={setNewPw}
       />
 
-      {editState ? (
+      {isEdit ? (
         <Box
           sx={{
             maxWidth: "700px",
@@ -133,6 +147,18 @@ export default function MyPage() {
             fullWidth
             sx={{ marginBottom: "10px", marginTop: "10px" }}
             color="inherit"
+            onClick={() => {
+              setUserData({
+                id: serverData.id,
+                pw: "",
+                pwCheck: "",
+                userName: serverData.userName,
+                account: serverData.account,
+                phoneNumber: serverData.phoneNumber,
+                newPw: "",
+              });
+              Edit();
+            }}
           >
             취소하기
           </Button>

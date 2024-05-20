@@ -11,7 +11,7 @@ import CheckIdDuplicate from "./CheckIdDuplicate";
  *
  * @param {boolean} isMyPage //아이디 수정 금지 여부
  */
-function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
+function UserInfoForm({ isMyPage, isEdit, errors, handleChange, userData }) {
   //비밀번호 *** 표시,문자표시 변경
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -74,64 +74,122 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
                   }}
                 />
               </tr>
-              <tr style={{ verticalAlign: "center" }}>
-                <TextField
-                  fullWidth
-                  id="pw"
-                  label="비밀번호"
-                  value={userData.pw}
-                  placeholder={(isMyPage ? "변경할 " : "") + "비밀번호"}
-                  disabled={!editState}
-                  error={errors.pw}
-                  variant="standard"
-                  type={showPassword ? "text" : "password"}
-                  onChange={handleChange}
-                  sx={{ marginBottom: "30px" }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LockIcon />
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                        >
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </tr>
-              <tr style={{ verticalAlign: "center" }}>
-                <TextField
-                  fullWidth
-                  id="pwCheck"
-                  label="비밀번호 재확인"
-                  placeholder="비밀번호 재입력"
-                  type={"password"}
-                  error={userData.pw != userData.pwCheck}
-                  disabled={!editState}
-                  helperText={
-                    userData.pw != userData.pwCheck
-                      ? "비밀번호가 틀립니다."
-                      : ""
-                  }
-                  variant="standard"
-                  onChange={handleChange}
-                  sx={{ marginBottom: "30px" }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LockIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </tr>
+              {isEdit || !(!isEdit && isMyPage) ? (
+                <tr style={{ verticalAlign: "center" }}>
+                  <TextField
+                    fullWidth
+                    id="pw"
+                    label={isMyPage ? "현재 " : "비밀번호"}
+                    value={userData.pw}
+                    placeholder={(isMyPage ? "현재 " : "") + "비밀번호"}
+                    disabled={!isEdit}
+                    error={errors.pw}
+                    helperText={
+                      isMyPage
+                        ? "정보 수정을 위해 현재 비밀번호를 입력해주세요"
+                        : ""
+                    }
+                    variant="standard"
+                    type={showPassword ? "text" : "password"}
+                    onChange={handleChange}
+                    sx={{ marginBottom: "30px" }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <LockIcon />
+                        </InputAdornment>
+                      ),
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </tr>
+              ) : (
+                ""
+              )}
+
+              {isMyPage && isEdit ? (
+                <tr style={{ verticalAlign: "center" }}>
+                  <TextField
+                    fullWidth
+                    id="newPw"
+                    label="새 비밀번호"
+                    value={userData.newPw}
+                    placeholder="새 비밀번호"
+                    disabled={!isEdit}
+                    variant="standard"
+                    type={showPassword ? "text" : "password"}
+                    onChange={handleChange}
+                    sx={{ marginBottom: "30px" }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <LockIcon />
+                        </InputAdornment>
+                      ),
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </tr>
+              ) : (
+                ""
+              )}
+              {(isMyPage && isEdit) || !isMyPage ? (
+                <tr style={{ verticalAlign: "center" }}>
+                  <TextField
+                    fullWidth
+                    id="pwCheck"
+                    label={(isMyPage ? "새 " : "") + "비밀번호 재입력"}
+                    placeholder={(isMyPage ? "새 " : "") + "비밀번호 재입력"}
+                    type={"password"}
+                    error={
+                      isMyPage
+                        ? userData.newPw != userData.pwCheck
+                        : userData.pw != userData.pwCheck
+                    }
+                    disabled={!isEdit}
+                    helperText={
+                      isMyPage
+                        ? userData.newPw != userData.pwCheck
+                          ? "비밀번호가 틀립니다."
+                          : ""
+                        : userData.pw != userData.pwCheck
+                        ? "비밀번호가 틀립니다."
+                        : ""
+                    }
+                    value={userData.pwCheck}
+                    variant="standard"
+                    onChange={handleChange}
+                    sx={{ marginBottom: "30px" }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <LockIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </tr>
+              ) : (
+                ""
+              )}
               <tr style={{ verticalAlign: "center" }}>
                 <TextField
                   fullWidth
@@ -139,7 +197,7 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
                   label="이름"
                   value={userData.userName}
                   variant="standard"
-                  disabled={!editState}
+                  disabled={!isEdit}
                   error={errors.userName}
                   placeholder="이름을 입력해주세요"
                   onChange={handleChange}
@@ -160,7 +218,7 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
                   label="계좌"
                   value={userData.account}
                   placeholder="계좌번호를 입력해주세요"
-                  disabled={!editState}
+                  disabled={!isEdit}
                   error={errors.account}
                   variant="standard"
                   sx={{ marginBottom: "30px" }}
@@ -181,7 +239,7 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
                   label="전화번호"
                   value={userData.phoneNumber}
                   placeholder="휴대폰 번호 입력('-' 제외 11자리 입력)"
-                  disabled={!editState}
+                  disabled={!isEdit}
                   error={errors.phoneNumber}
                   helperText={
                     errors.phoneNumber ? "전화번호를 다시 확인해주세요" : ""
