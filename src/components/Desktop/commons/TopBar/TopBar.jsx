@@ -168,7 +168,7 @@ function TopBar({ children }) {
                   marginLeft: "10px",
                 }}
               >
-                주문/부엌
+                모바일
               </Button>
               <Divider orientation="vertical" sx={{ display: "inline" }} />
               <Button
