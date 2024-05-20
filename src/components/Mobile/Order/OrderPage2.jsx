@@ -23,12 +23,9 @@ const OrderPage2 = () => {
       <h4 className='name'>{name}</h4>
       </AppBar>
       <div className='textdiv'>
-        <ul className='ullist'>
-          <li>입금자 명: {value1}</li>
-          <li>테이블 넘버: {value2}</li>
-          <li>총 가격: {total} 원 </li>
-        </ul>
-
+        <p><b>입금자 명: {value1}</b></p>
+        <p><b>테이블 넘버: {value2}</b></p>
+        <p><b>총 가격: {total} 원</b></p>
         <p>&nbsp;</p>
         <p><b>입력하신 입금자명과 입금자가 <br/>동일해야 입금내역을 확인할 수 있습니다.</b></p>
         <p>&nbsp;</p>
@@ -54,7 +51,7 @@ const OrderPage2 = () => {
       <Button className='orderBt' style={{color: 'white', boxShadow:'1px 1px 5px black'}}
       onClick={()=>{
         if(window.confirm('주문을 하시겠습니까?')){
-          navigate(-1)
+          navigate('/OrderPage3', {state:{total: total, value1: value1, name: name}})
         }
         else{
           //아니요
