@@ -26,29 +26,28 @@ const Phone = () => {
   return (
     <div className="button-container">
       <LogoutTopBar />
-      <div>
-        <Button
-          variant="contained"
-          sx={{
-            position: "absolute",
-            top: "1vh",
-            right: "7vw",
-            width: "10vw",
-            height: "5vh",
-            borderRadius: 5,
-            "&:hover": {
-              backgroundColor: "#4285f4",
-            },
-            "&:not(:hover)": {
-              backgroundColor: "#7AA2E3",
-              transition: "background-color 0.5s",
-            },
-          }}
-          onClick={() => navigate("/OrderManage")}
-        >
-          PC화면
-        </Button>
-      </div>
+      <Button
+        variant="contained"
+        size="large"
+        sx={{
+          position: "absolute",
+          top: "6px",
+          right: "5vw",
+          width: "120px",
+          height: "50px",
+          borderRadius: 5,
+          "&:hover": {
+            backgroundColor: "#4285f4",
+          },
+          "&:not(:hover)": {
+            backgroundColor: "#7AA2E3",
+            transition: "background-color 0.5s",
+          },
+        }}
+        onClick={() => navigate("/OrderManage")}
+      >
+        PC 화면
+      </Button>
       <Box
         sx={{
           display: "flex",
