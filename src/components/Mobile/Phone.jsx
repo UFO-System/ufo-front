@@ -25,7 +25,6 @@ const Phone = () => {
 
   return (
     <div className="button-container">
-      <LogoutTopBar />
       <Button
         variant="contained"
         size="large"
