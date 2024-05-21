@@ -186,6 +186,19 @@ function TopBar({ children }) {
                 관리자:김호진
               </Typography>
               <Button
+                onClick={() => navigate("/Phone")}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "inline",
+                  marginRight: "10px",
+                  marginLeft: "10px",
+                }}
+              >
+                모바일
+              </Button>
+              <Divider orientation="vertical" sx={{ display: "inline" }} />
+              <Button
                 onClick={() => navigate("/MyPage")}
                 sx={{
                   my: 2,

@@ -6,6 +6,7 @@ import Register from "./components/Desktop/Register/Register";
 import KitchenPage from "./components/Mobile/Kitchen/KitchenPage";
 import OrderPage1 from "./components/Mobile/Order/OrderPage1";
 import OrderPage2 from "./components/Mobile/Order/OrderPage2";
+import OrderPage3 from "./components/Mobile/Order/OrderPage3";
 import MyPage from "./components/Desktop/MyPage/MyPage";
 import RecipeManage from "./components/Desktop/RecipeManagePage/RecipeManage";
 import OrderManage from "./components/Desktop/OrderManagePage/OrderManage";
@@ -113,6 +114,14 @@ function App() {
           element={
             <LogoutTopBar>
               <OrderPage2 />
+            </LogoutTopBar>
+          }
+        />
+        <Route
+          path="/OrderPage3"
+          element={
+            <LogoutTopBar>
+              <OrderPage3 />
             </LogoutTopBar>
           }
         />
