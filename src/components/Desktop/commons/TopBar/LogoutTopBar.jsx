@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -8,7 +9,8 @@ import { AppBar } from "@mui/material";
 import "./css/TopBar.css";
 import UFO from "../../../../assets/UFO.png";
 
-function LogoutTopBar({ children }) {
+function LogoutTopBar({ children, isLogin }) {
+  const navigate = useNavigate();
   return (
     <div className="notLoginTopBar">
       <AppBar position="static">
@@ -17,7 +19,15 @@ function LogoutTopBar({ children }) {
             <Box
               sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
             >
-              <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mr: 1,
+                  cursor: "pointer",
+                }}
+                onClick={() => (isLogin ? navigate("/Phone") : "")}
+              >
                 <img
                   src={UFO}
                   alt="UFO"
@@ -27,7 +37,6 @@ function LogoutTopBar({ children }) {
                   variant="h6"
                   noWrap
                   component="a"
-                  href="#app-bar-with-responsive-menu"
                   sx={{
                     fontFamily: "monospace",
                     fontWeight: 700,
