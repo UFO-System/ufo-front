@@ -8,7 +8,6 @@ import LogoutTopBar from "../../Desktop/commons/TopBar/LogoutTopBar";
 function KitchenPage() {
   return (
     <>
-      <LogoutTopBar />
       <Header />
       <body className="kitchenBody">
         {Object.entries(data).map(([key, values]) => (
