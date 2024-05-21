@@ -13,7 +13,7 @@ const OrderPage2 = () => {
   const total= location.state.total; // 총가격
   const name = location.state.name // 로고 이름
   const value1 = location.state.value1 // 입금자 명
-  const value2 = location.state.value2 // 테이블 넘버
+  //const value2 = location.state.value2 // 테이블 넘버
 
   const navigate =useNavigate();
   return (
@@ -24,7 +24,7 @@ const OrderPage2 = () => {
       </AppBar>
       <div className='textdiv'>
         <p><b>입금자 명: {value1}</b></p>
-        <p><b>테이블 넘버: {value2}</b></p>
+        {/* <p><b>테이블 넘버: {value2}</b></p> */}
         <p><b>총 가격: {total} 원</b></p>
         <p>&nbsp;</p>
         <p><b>입력하신 입금자명과 입금자가 <br/>동일해야 입금내역을 확인할 수 있습니다.</b></p>

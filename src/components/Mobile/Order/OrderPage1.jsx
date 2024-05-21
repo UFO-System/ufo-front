@@ -104,13 +104,13 @@ const OrderPage1 = () => {
         onChange={handleChange1}/>
       {showWarning1 && <p style={{ color: 'red' }}>입금자 이름을 입력해주세요.</p>}
       {/* 테이블 넘버 */}
-      <Input 
+      {/* <Input 
         className='input'
         placeholder="테이블 넘버를 입력하세요."
         type="text"
         value={value2}
         onChange={handleChange2}/>
-      {showWarning2 && <p style={{ color: 'red' }}>테이블 넘버를 입력해주세요.</p>}
+      {showWarning2 && <p style={{ color: 'red' }}>테이블 넘버를 입력해주세요.</p>} */}
       <hr></hr>
       {/* 음식 메뉴 */}
       <div className='menu'>
@@ -144,18 +144,19 @@ const OrderPage1 = () => {
       if (value1 === '') { // 입금자 명을 입력 안 했을 경우
         alert('입금자 이름을 입력해주세요');  
       } else {
-          if (value2 === ''){ // 테이블 넘버를 입력 안 했을 경우
-            alert('테이블 넘버를 입력해주세요.')
-          }else{
+          //if (value2 === ''){ // 테이블 넘버를 입력 안 했을 경우
+            //alert('테이블 넘버를 입력해주세요.')
+          //}else{
             if (window.confirm('주문하시겠습니까?')) {
               // 사용자가 '예'를 선택한 경우 실행할 코드
               console.log('입력값:', value1);
               {navigate('/OrderPage2', 
-              {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value1 : value1 , value2 : value2}}
+              {state:{total : price1 * count1 + price2 * count2 + price3 * count3, name : name, value1 : value1 , }}//value2 : value2
               )}
             } else {
               // 사용자가 '아니요'를 선택한 경우 실행할 코드
-            }}
+            }
+          //}
           }}}
       style={{color: 'white', boxShadow:'1px 1px 5px black'}}> 
       주문하기</Button>
