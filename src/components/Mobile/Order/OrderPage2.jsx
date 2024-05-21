@@ -19,9 +19,9 @@ const OrderPage2 = () => {
   return (
     
     <div className='app'>
-      <AppBar position="static">
+      {/* <AppBar position="static">
       <h4 className='name'>{name}</h4>
-      </AppBar>
+      </AppBar> */}
       <div className='textdiv'>
         <p><b>입금자 명: {value1}</b></p>
         {/* <p><b>테이블 넘버: {value2}</b></p> */}

@@ -24,9 +24,9 @@ const OrderPage3 = () => {
 
   <div className='app'>
 
-    <AppBar position="static">
+    {/* <AppBar position="static">
       <h4 className='name'>{name}</h4>
-    </AppBar>
+    </AppBar> */}
     <div className='textdiv'>
       <h4>주문이 완료되었습니다.</h4>
       <p><b>아래 계좌로 이체하시면 주문이 수락됩니다.</b></p>

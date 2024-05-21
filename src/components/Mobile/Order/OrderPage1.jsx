@@ -92,9 +92,9 @@ const OrderPage1 = () => {
   return (
     // 로고 앱바
     <div className='app'>
-    <AppBar position="static">
-      <h4 className='name'>{name}&nbsp;&nbsp;&nbsp;</h4>
-    </AppBar>
+    {/* <AppBar position="static"> */}
+      {/* <h4 className='name'>{name}&nbsp;&nbsp;&nbsp;</h4> */}
+    {/* </AppBar> */}
     {/* 입금자 명 */}
       <Input 
         className='input'
