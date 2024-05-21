@@ -86,43 +86,48 @@ function App() {
         <Route
           path="/Phone"
           element={
-            <LogoutTopBar isLogin={true}>
+            <>
+              <LogoutTopBar isLogin={true} />
               <Phone />
-            </LogoutTopBar>
+            </>
           }
         />
         {/* 부엌에서 볼 화면 */}
         <Route
           path="/KitchenPage"
           element={
-            <LogoutTopBar isLogin={true}>
+            <>
+              <LogoutTopBar isLogin={true} />
               <KitchenPage />
-            </LogoutTopBar>
+            </>
           }
         />
         {/* 주문 화면 */}
         <Route
           path="/OrderPage1"
           element={
-            <LogoutTopBar isLogin={true}>
+            <>
+              <LogoutTopBar isLogin={true} />
               <OrderPage1 />
-            </LogoutTopBar>
+            </>
           }
         />
         <Route
           path="/OrderPage2"
           element={
-            <LogoutTopBar isLogin={true}>
+            <>
+              <LogoutTopBar isLogin={true} />
               <OrderPage2 />
-            </LogoutTopBar>
+            </>
           }
         />
         <Route
           path="/OrderPage3"
           element={
-            <LogoutTopBar isLogin={true}>
+            <>
+              <LogoutTopBar isLogin={true} />
               <OrderPage3 />
-            </LogoutTopBar>
+            </>
           }
         />
       </Routes>
