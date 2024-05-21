@@ -5,10 +5,10 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
+  Toolbar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./css/Phone.css";
-import LogoutTopBar from "../Desktop/commons/TopBar/LogoutTopBar";
 
 const Phone = () => {
   const theme = useTheme();
@@ -24,28 +24,20 @@ const Phone = () => {
   };
 
   return (
-    <div className="button-container">
+    <div>
       <Button
         variant="contained"
         size="large"
         sx={{
           position: "absolute",
-          top: "6px",
+          display: "inline",
+          top: "10px",
           right: "5vw",
-          width: "120px",
-          height: "50px",
-          borderRadius: 5,
-          "&:hover": {
-            backgroundColor: "#4285f4",
-          },
-          "&:not(:hover)": {
-            backgroundColor: "#7AA2E3",
-            transition: "background-color 0.5s",
-          },
+          color: "white",
         }}
         onClick={() => navigate("/OrderManage")}
       >
-        PC 화면
+        관리자 화면
       </Button>
       <Box
         sx={{

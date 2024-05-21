@@ -195,7 +195,7 @@ function TopBar({ children }) {
                   marginLeft: "10px",
                 }}
               >
-                모바일
+                사용자 화면
               </Button>
               <Divider orientation="vertical" sx={{ display: "inline" }} />
               <Button

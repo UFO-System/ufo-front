@@ -28,17 +28,24 @@
 .bottom{
   border-bottom: 1px solid black;
 }
-body{
+body {
   margin: 0px;
 }
-.app{
+.app {
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.input{
+.input {
   text-align: center;
   margin: 10px;
 }
-.textdiv{
+.textdiv {
   text-align: center;
   margin-top: 80px;
+}
+.centered-image {
+  display: block;
+  margin: 0 auto;
 }
