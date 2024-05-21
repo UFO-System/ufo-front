@@ -39,7 +39,7 @@ function App() {
         <Route
           path="/Main"
           element={
-            <TopBar>
+            <TopBar isDesktop={true}>
               <MainPage />
             </TopBar>
           }
@@ -82,12 +82,40 @@ function App() {
         />
 
         {/* 폰화면 */}
-        <Route path="/Phone" element={<Phone />} />
+        <Route
+          path="/Phone"
+          element={
+            <LogoutTopBar>
+              <Phone />
+            </LogoutTopBar>
+          }
+        />
         {/* 부엌에서 볼 화면 */}
-        <Route path="/KitchenPage" element={<KitchenPage />} />
+        <Route
+          path="/KitchenPage"
+          element={
+            <LogoutTopBar>
+              <KitchenPage />
+            </LogoutTopBar>
+          }
+        />
         {/* 주문 화면 */}
-        <Route path="/OrderPage1" element={<OrderPage1 />} />
-        <Route path="/OrderPage2" element={<OrderPage2 />} />
+        <Route
+          path="/OrderPage1"
+          element={
+            <LogoutTopBar>
+              <OrderPage1 />
+            </LogoutTopBar>
+          }
+        />
+        <Route
+          path="/OrderPage2"
+          element={
+            <LogoutTopBar>
+              <OrderPage2 />
+            </LogoutTopBar>
+          }
+        />
       </Routes>
     </Router>
   );
