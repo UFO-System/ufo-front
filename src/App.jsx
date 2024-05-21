@@ -86,7 +86,7 @@ function App() {
         <Route
           path="/Phone"
           element={
-            <LogoutTopBar>
+            <LogoutTopBar isLogin={true}>
               <Phone />
             </LogoutTopBar>
           }
@@ -95,7 +95,7 @@ function App() {
         <Route
           path="/KitchenPage"
           element={
-            <LogoutTopBar>
+            <LogoutTopBar isLogin={true}>
               <KitchenPage />
             </LogoutTopBar>
           }
@@ -104,7 +104,7 @@ function App() {
         <Route
           path="/OrderPage1"
           element={
-            <LogoutTopBar>
+            <LogoutTopBar isLogin={true}>
               <OrderPage1 />
             </LogoutTopBar>
           }
@@ -112,7 +112,7 @@ function App() {
         <Route
           path="/OrderPage2"
           element={
-            <LogoutTopBar>
+            <LogoutTopBar isLogin={true}>
               <OrderPage2 />
             </LogoutTopBar>
           }
@@ -120,7 +120,7 @@ function App() {
         <Route
           path="/OrderPage3"
           element={
-            <LogoutTopBar>
+            <LogoutTopBar isLogin={true}>
               <OrderPage3 />
             </LogoutTopBar>
           }
