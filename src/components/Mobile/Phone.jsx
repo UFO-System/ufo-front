@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Button,
@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./css/Phone.css";
-import LogoutTopBar from "../Desktop/commons/TopBar/LogoutTopBar";
 
 const Phone = () => {
   const theme = useTheme();

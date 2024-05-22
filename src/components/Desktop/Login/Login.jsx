@@ -14,8 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import LockIcon from "@mui/icons-material/Lock";
 import Loading from "../../commons/Loading/Loading";
+import { UserInfoContext } from "../../../contexts/UserInfoContext";
 
 const Login = () => {
+  const { setUserInfo } = useContext(UserInfoContext);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const navigate = useNavigate();
@@ -46,6 +48,7 @@ const Login = () => {
           console.log("전송"); //전송
           setCookie("user", { id });
           //테스트 코드
+          setUserInfo({ id: id });
           setTimeout(() => {
             navigate("/Main");
           }, 1000);

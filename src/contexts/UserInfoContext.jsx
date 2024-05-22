@@ -4,11 +4,8 @@ export const UserInfoContext = createContext(null);
 export const UserInfoProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({
     id: "testid",
-    pw: "testpw",
-    pwCheck: "testpwCheck",
     userName: "testuserName",
-    account: "testaccount",
-    phoneNumber: "testphoneNumber",
+    account: "6127703304958",
   });
 
   const value = {
