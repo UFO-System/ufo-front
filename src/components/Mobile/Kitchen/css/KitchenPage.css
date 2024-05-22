@@ -3,20 +3,23 @@ body {
   padding: 0;
   background-color: #efefef;
 }
+
 .kitchenDiv {
   width: 100%;
   height: 100%;
   color: #3c2a2c;
 }
+
 .tableDiv {
   font-family: "고딕체";
-  border: 1px solid #3c2a2c;
-  text-align: center;
   border: none;
-  font-size: 2.2rem;
+  text-align: center;
+  font-size: 1.8vw;
   font-weight: bolder;
 }
+
 .kitchenBody {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Center the content for larger screens */
 }
