@@ -17,11 +17,6 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
   const handleClickShowPassword = () => {
     setShowPassword((show) => !show);
   };
-
-  //개인정보 수정하기 버튼 클릭시
-
-  //textInput 에러 표시
-
   return (
     <>
       <div

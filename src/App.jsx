@@ -14,6 +14,7 @@ import SalesManage from "./components/Desktop/SalesManagePage/SalesManage";
 import Phone from "./components/Mobile/Phone";
 import LogoutTopBar from "./components/Desktop/commons/TopBar/LogoutTopBar";
 import TopBar from "./components/Desktop/commons/TopBar/TopBar";
+import { UserInfoProvider } from "./contexts/UserInfoContext";
 function App() {
   return (
     <Router>
@@ -22,9 +23,11 @@ function App() {
         <Route
           path="/"
           element={
-            <LogoutTopBar>
-              <Login />
-            </LogoutTopBar>
+            <UserInfoProvider>
+              <LogoutTopBar>
+                <Login />
+              </LogoutTopBar>
+            </UserInfoProvider>
           }
         />
         {/* 회원 가입 화면 */}
@@ -40,45 +43,55 @@ function App() {
         <Route
           path="/Main"
           element={
-            <TopBar isDesktop={true}>
-              <MainPage />
-            </TopBar>
+            <UserInfoProvider>
+              <TopBar isDesktop={true}>
+                <MainPage />
+              </TopBar>
+            </UserInfoProvider>
           }
         />
         {/* 주문관리 */}
         <Route
           path="/OrderManage"
           element={
-            <TopBar>
-              <OrderManage />
-            </TopBar>
+            <UserInfoProvider>
+              <TopBar>
+                <OrderManage />
+              </TopBar>
+            </UserInfoProvider>
           }
         />
         {/* 메뉴 관리 */}
         <Route
           path="/RecipeManage"
           element={
-            <TopBar>
-              <RecipeManage />
-            </TopBar>
+            <UserInfoProvider>
+              <TopBar>
+                <RecipeManage />
+              </TopBar>
+            </UserInfoProvider>
           }
         />
         {/* 매출 관리 */}
         <Route
           path="/SalesManage"
           element={
-            <TopBar>
-              <SalesManage />
-            </TopBar>
+            <UserInfoProvider>
+              <TopBar>
+                <SalesManage />
+              </TopBar>
+            </UserInfoProvider>
           }
         />
         {/* 마이페이지 (정보 수정용) */}
         <Route
           path="/MyPage"
           element={
-            <TopBar>
-              <MyPage />
-            </TopBar>
+            <UserInfoProvider>
+              <TopBar>
+                <MyPage />
+              </TopBar>
+            </UserInfoProvider>
           }
         />
 
@@ -86,48 +99,48 @@ function App() {
         <Route
           path="/Phone"
           element={
-            <>
+            <UserInfoProvider>
               <LogoutTopBar isLogin={true} />
               <Phone />
-            </>
+            </UserInfoProvider>
           }
         />
         {/* 부엌에서 볼 화면 */}
         <Route
           path="/KitchenPage"
           element={
-            <>
+            <UserInfoProvider>
               <LogoutTopBar isLogin={true} />
               <KitchenPage />
-            </>
+            </UserInfoProvider>
           }
         />
         {/* 주문 화면 */}
         <Route
           path="/OrderPage1"
           element={
-            <>
+            <UserInfoProvider>
               <LogoutTopBar isLogin={true} />
               <OrderPage1 />
-            </>
+            </UserInfoProvider>
           }
         />
         <Route
           path="/OrderPage2"
           element={
-            <>
+            <UserInfoProvider>
               <LogoutTopBar isLogin={true} />
               <OrderPage2 />
-            </>
+            </UserInfoProvider>
           }
         />
         <Route
           path="/OrderPage3"
           element={
-            <>
+            <UserInfoProvider>
               <LogoutTopBar isLogin={true} />
               <OrderPage3 />
-            </>
+            </UserInfoProvider>
           }
         />
       </Routes>
