@@ -45,7 +45,11 @@ const Login = () => {
           setIsLoading(true);
           console.log("전송"); //전송
           setCookie("user", { id });
-          // navigate("/Main");
+          //테스트 코드
+          setTimeout(() => {
+            navigate("/Main");
+          }, 1000);
+          // setIsLoading(false);
           return;
       }
     }
