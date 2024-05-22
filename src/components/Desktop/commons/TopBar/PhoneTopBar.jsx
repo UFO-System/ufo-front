@@ -15,7 +15,7 @@ import { useState } from "react";
 import UFO from "../../../../assets/UFO.png";
 const menuLists = ["주문 관리", "메뉴 관리", "매출 관리"];
 const pages = ["OrderManage", "RecipeManage", "SalesManage"];
-function TopBar({ children }) {
+function PhoneTopBar({ children }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [, , removeCookie] = useCookies(["id"]);
   const navigate = useNavigate();
@@ -137,7 +137,6 @@ function TopBar({ children }) {
                 component="a"
                 sx={{
                   mr: 2,
-                  display: { xs: "none", md: "flex" },
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
@@ -195,7 +194,7 @@ function TopBar({ children }) {
                   marginLeft: "10px",
                 }}
               >
-                모바일
+                사용자 화면
               </Button>
               <Divider orientation="vertical" sx={{ display: "inline" }} />
               <Button
@@ -234,4 +233,4 @@ function TopBar({ children }) {
     </>
   );
 }
-export default TopBar;
+export default PhoneTopBar;

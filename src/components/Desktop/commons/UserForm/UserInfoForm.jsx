@@ -1,10 +1,4 @@
-import {
-  Button,
-  IconButton,
-  InputAdornment,
-  Paper,
-  TextField,
-} from "@mui/material";
+import { IconButton, InputAdornment, Paper, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { AccountCircle, Visibility, VisibilityOff } from "@mui/icons-material";
 import LockIcon from "@mui/icons-material/Lock";
@@ -23,11 +17,6 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
   const handleClickShowPassword = () => {
     setShowPassword((show) => !show);
   };
-
-  //개인정보 수정하기 버튼 클릭시
-
-  //textInput 에러 표시
-
   return (
     <>
       <div
