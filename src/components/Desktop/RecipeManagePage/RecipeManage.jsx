@@ -156,7 +156,7 @@ const RecipeManage = () => {
                   align="center"
                   sx={{ backgroundColor: "#002884", color: "white" }}
                 >
-                  날짜별
+                  현재 메뉴
                 </TableCell>
               </TableRow>
               <TableRow>
