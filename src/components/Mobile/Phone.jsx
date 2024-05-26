@@ -25,20 +25,6 @@ const Phone = () => {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        size="large"
-        sx={{
-          position: "absolute",
-          display: "inline",
-          top: "10px",
-          right: "5vw",
-          color: "white",
-        }}
-        onClick={() => navigate("/OrderManage")}
-      >
-        관리자 화면
-      </Button>
       <Box
         sx={{
           display: "flex",
