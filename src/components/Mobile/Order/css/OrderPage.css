@@ -1,7 +1,7 @@
-.app{
+.app {
   text-align: center;
 }
-.name{
+.name {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -10,22 +10,22 @@
   line-height: 70px;
   margin: 0;
 }
-.menu{
+.menu {
   border-bottom: 1px solid black;
   padding-left: 20px;
   text-align: left;
 }
-.btn{
-  float:right;
+.btn {
+  float: right;
   margin: 5px;
 }
-.orderBt{
+.orderBt {
   width: 120px;
   height: 50px;
   float: none;
   margin: 10px;
 }
-.bottom{
+.bottom {
   border-bottom: 1px solid black;
 }
 body {
@@ -33,9 +33,9 @@ body {
 }
 .app {
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
 }
 .input {
   text-align: center;
