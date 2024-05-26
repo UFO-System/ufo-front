@@ -5,6 +5,7 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
+  Toolbar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./css/Phone.css";
@@ -23,29 +24,7 @@ const Phone = () => {
   };
 
   return (
-    <div className="button-container">
-      <Button
-        variant="contained"
-        size="large"
-        sx={{
-          position: "absolute",
-          top: "6px",
-          right: "5vw",
-          width: "120px",
-          height: "50px",
-          borderRadius: 5,
-          "&:hover": {
-            backgroundColor: "#4285f4",
-          },
-          "&:not(:hover)": {
-            backgroundColor: "#7AA2E3",
-            transition: "background-color 0.5s",
-          },
-        }}
-        onClick={() => navigate("/OrderManage")}
-      >
-        PC 화면
-      </Button>
+    <div>
       <Box
         sx={{
           display: "flex",

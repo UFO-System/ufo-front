@@ -47,8 +47,9 @@ function TopBar({ children }) {
               }}
               onClick={() => navigate("/OrderManage")}
             >
-              <img
+              <Box
                 src={UFO}
+                component="img"
                 style={{
                   width: "43px",
                   height: "43px",
@@ -123,8 +124,9 @@ function TopBar({ children }) {
               }}
               onClick={() => navigate("/OrderManage")}
             >
-              <img
+              <Box
                 src={UFO}
+                component="img"
                 style={{
                   width: "43px",
                   height: "43px",
@@ -137,7 +139,7 @@ function TopBar({ children }) {
                 component="a"
                 sx={{
                   mr: 2,
-                  display: { xs: "none", md: "flex" },
+                  display: { xs: "flex", md: "none" },
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
@@ -185,18 +187,7 @@ function TopBar({ children }) {
               >
                 관리자:김호진
               </Typography>
-              <Button
-                onClick={() => navigate("/Phone")}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "inline",
-                  marginRight: "10px",
-                  marginLeft: "10px",
-                }}
-              >
-                모바일
-              </Button>
+
               <Divider orientation="vertical" sx={{ display: "inline" }} />
               <Button
                 onClick={() => navigate("/MyPage")}
