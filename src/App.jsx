@@ -16,6 +16,7 @@ import LogoutTopBar from "./components/Desktop/commons/TopBar/LogoutTopBar";
 import TopBar from "./components/Desktop/commons/TopBar/TopBar";
 import { UserInfoProvider } from "./contexts/UserInfoContext";
 import PhoneTopBar from "./components/Desktop/commons/TopBar/PhoneTopBar";
+import UserPage from "./components/User/UserPage";
 import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
 function App() {
   return (
@@ -79,7 +80,7 @@ function App() {
           path="/SalesManage"
           element={
             <UserInfoProvider>
-              {isMobile ? (
+              {isMobile || isTablet ? (
                 <>
                   <PhoneTopBar />
                   <SalesManage />
@@ -98,7 +99,7 @@ function App() {
           path="/MyPage"
           element={
             <UserInfoProvider>
-              {isMobile ? (
+              {isMobile || isTablet ? (
                 <>
                   <PhoneTopBar />
                   <MyPage />
@@ -158,6 +159,15 @@ function App() {
             <UserInfoProvider>
               <PhoneTopBar />
               <OrderPage3 />
+            </UserInfoProvider>
+          }
+        />
+        <Route
+          path="/:id/:tableid"
+          element={
+            <UserInfoProvider>
+              <LogoutTopBar />
+              <UserPage />
             </UserInfoProvider>
           }
         />
