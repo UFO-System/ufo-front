@@ -107,6 +107,7 @@ function TopBar({ children }) {
                   <MenuItem
                     key={menuList}
                     onClick={() => {
+                      handleCloseNavMenu();
                       navigate("/" + pages[idx]);
                     }}
                   >
