@@ -11,6 +11,7 @@ export default function Register() {
     userName: "",
     account: "",
     phoneNumber: "",
+    group: "",
   });
 
   const [errors, setErrors] = useState({
@@ -20,6 +21,7 @@ export default function Register() {
     userName: false,
     account: false,
     phoneNumber: false,
+    group: false,
   });
   const validate = () => {
     let newErrors = {
@@ -29,6 +31,7 @@ export default function Register() {
       userName: userData.userName === "",
       account: userData.account === "",
       phoneNumber: userData.phoneNumber.length !== 11,
+      group: userData.group === "",
     };
 
     setErrors(newErrors);

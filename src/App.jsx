@@ -18,6 +18,7 @@ import { UserInfoProvider } from "./contexts/UserInfoContext";
 import PhoneTopBar from "./components/Desktop/commons/TopBar/PhoneTopBar";
 import UserPage from "./components/User/UserPage";
 import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
+import QRManage from "./components/Desktop/QRManagePage/QRManage";
 function App() {
   return (
     <Router>
@@ -94,6 +95,17 @@ function App() {
             </UserInfoProvider>
           }
         />
+        {/* QR 생성 */}
+        <Route
+          path="/QRManage"
+          element={
+            <UserInfoProvider>
+              <TopBar>
+                <QRManage />
+              </TopBar>
+            </UserInfoProvider>
+          }
+        />
         {/* 마이페이지 (정보 수정용) */}
         <Route
           path="/MyPage"
@@ -165,10 +177,10 @@ function App() {
         <Route
           path="/:id/:tableid"
           element={
-            <UserInfoProvider>
+            <>
               <LogoutTopBar />
               <UserPage />
-            </UserInfoProvider>
+            </>
           }
         />
       </Routes>
