@@ -47,7 +47,7 @@ export default function MyPage() {
     if (validate()) {
       alert("수정되었습니다.");
       console.log(userData);
-      navigate("/OrderManage");
+      navigate("/MyPage", { replace: true });
     } else {
       alert("정보를 확인해주세요.");
     }
@@ -61,7 +61,7 @@ export default function MyPage() {
 
   const handleBack = () => {
     if (confirm("정보수정을 취소하시겠습니까?")) {
-      navigate("/OrderManage");
+      navigate(-1);
     }
   };
   //수정모드에서 수정버튼 클릭시
