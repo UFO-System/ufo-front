@@ -29,13 +29,15 @@ const Header = () => {
       <Pagination
       showFirstButton 
       showLastButton
+      color="primary"
       count={10} 
       size="large"
       sx={{
+        borderRadius: 5,
         position: "absolute", 
         top: "1.5vh",
         right: "5vw",
-        color: "white"
+        background: "#efefef"
         }}/>
     </div>
     
