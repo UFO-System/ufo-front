@@ -27,17 +27,36 @@ const Header = () => {
         주문 되돌리기
       </Button>
       <Pagination
-      showFirstButton 
+      showFirstButton
       showLastButton
       color="primary"
-      count={10} 
-      size="large"
+      count={10}
       sx={{
         borderRadius: 5,
-        position: "absolute", 
+        position: "absolute",
         top: "1.5vh",
         right: "5vw",
-        background: "#efefef"
+        backgroundColor: "#efefef",
+        width: {
+          xs: 0,
+          sm: 430,
+          md: 430,
+          lg: 430
+        },
+        height: {
+          xs: 0,
+          sm: 32,
+          md: 32,
+          lg: 32
+        },
+        "& .MuiPaginationItem-root": {
+          fontSize: {
+            xs: '0.5rem',
+            sm: '0.8rem',
+            md: '1.3rem',
+            lg: '1.3rem'
+          }
+        }
         }}/>
     </div>
     
