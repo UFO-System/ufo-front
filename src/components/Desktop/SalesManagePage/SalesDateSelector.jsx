@@ -81,7 +81,7 @@ function SalesDateSelector() {
 
   const sortedSales = stableSort(sales, getComparator(order, orderBy));
   return (
-    <TableContainer component={Paper} sx={{ height: "90vh" }}>
+    <TableContainer component={Paper} sx={{ height: { md: "80vh" } }}>
       <Table>
         <TableHead>
           <TableRow>

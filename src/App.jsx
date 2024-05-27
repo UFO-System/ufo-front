@@ -16,8 +16,8 @@ import LogoutTopBar from "./components/Desktop/commons/TopBar/LogoutTopBar";
 import TopBar from "./components/Desktop/commons/TopBar/TopBar";
 import { UserInfoProvider } from "./contexts/UserInfoContext";
 import PhoneTopBar from "./components/Desktop/commons/TopBar/PhoneTopBar";
-import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
 import UserPage from "./components/User/UserPage";
+import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
 function App() {
   return (
     <Router>
@@ -119,7 +119,7 @@ function App() {
           path="/Phone"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <Phone />
             </UserInfoProvider>
           }
@@ -129,7 +129,7 @@ function App() {
           path="/KitchenPage"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <KitchenPage />
             </UserInfoProvider>
           }
@@ -139,7 +139,7 @@ function App() {
           path="/OrderPage1"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <OrderPage1 />
             </UserInfoProvider>
           }
@@ -148,7 +148,7 @@ function App() {
           path="/OrderPage2"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <OrderPage2 />
             </UserInfoProvider>
           }
@@ -157,7 +157,7 @@ function App() {
           path="/OrderPage3"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <OrderPage3 />
             </UserInfoProvider>
           }
