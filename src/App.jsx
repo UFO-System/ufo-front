@@ -15,12 +15,9 @@ import Phone from "./components/Mobile/Phone";
 import LogoutTopBar from "./components/Desktop/commons/TopBar/LogoutTopBar";
 import TopBar from "./components/Desktop/commons/TopBar/TopBar";
 import { UserInfoProvider } from "./contexts/UserInfoContext";
-<<<<<<< Updated upstream
-=======
 import PhoneTopBar from "./components/Desktop/commons/TopBar/PhoneTopBar";
 import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
 import UserPage from "./components/User/UserPage";
->>>>>>> Stashed changes
 function App() {
   return (
     <Router>
@@ -83,11 +80,6 @@ function App() {
           path="/SalesManage"
           element={
             <UserInfoProvider>
-<<<<<<< Updated upstream
-              <TopBar>
-                <SalesManage />
-              </TopBar>
-=======
               {isMobile || isTablet ? (
                 <>
                   <PhoneTopBar />
@@ -99,7 +91,6 @@ function App() {
                   <SalesManage />
                 </>
               )}
->>>>>>> Stashed changes
             </UserInfoProvider>
           }
         />
@@ -108,11 +99,6 @@ function App() {
           path="/MyPage"
           element={
             <UserInfoProvider>
-<<<<<<< Updated upstream
-              <TopBar>
-                <MyPage />
-              </TopBar>
-=======
               {isMobile || isTablet ? (
                 <>
                   <PhoneTopBar />
@@ -124,7 +110,6 @@ function App() {
                   <MyPage />
                 </>
               )}
->>>>>>> Stashed changes
             </UserInfoProvider>
           }
         />
