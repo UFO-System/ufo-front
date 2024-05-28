@@ -6,16 +6,16 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
   Paper,
   Button,
   Typography,
   TableSortLabel,
+  TextField,
 } from "@mui/material";
 
 const RecipeManage = () => {
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('ko-KR').format(price) + "원";
+    return new Intl.NumberFormat("ko-KR").format(price) + "원";
   };
 
   const [data, setData] = useState([
@@ -98,7 +98,8 @@ const RecipeManage = () => {
 
   const [newMenu, setNewMenu] = useState("");
   const [newPrice, setNewPrice] = useState("");
-  const [newImage, setNewImage] = useState("");
+  const [newImage, setNewImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const handleDelete = (name) => {
     const confirmDelete = window.confirm("정말로 삭제하시겠습니까?");
@@ -112,7 +113,7 @@ const RecipeManage = () => {
     if (
       newMenu.trim() === "" ||
       newPrice.trim() === "" ||
-      newImage.trim() === ""
+      newImage === null
     ) {
       alert("모든 필드를 입력하세요.");
       return;
@@ -127,7 +128,7 @@ const RecipeManage = () => {
     const updatedMenu = {
       name: newMenu,
       price: parseInt(newPrice),
-      image: newImage,
+      image: URL.createObjectURL(newImage),
       addedDate: new Date(),
     };
 
@@ -137,7 +138,14 @@ const RecipeManage = () => {
 
     setNewMenu("");
     setNewPrice("");
-    setNewImage("");
+    setNewImage(null);
+    setImagePreview(null);
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setNewImage(file);
+    setImagePreview(URL.createObjectURL(file));
   };
 
   return (
@@ -149,7 +157,7 @@ const RecipeManage = () => {
       }}
     >
       <div style={{ width: "50%", height: "80vh", overflow: "auto" }}>
-      <TableContainer component={Paper}>
+        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -239,13 +247,19 @@ const RecipeManage = () => {
             fullWidth
             margin="normal"
           />
-          <TextField
-            label="이미지"
-            value={newImage}
-            onChange={(e) => setNewImage(e.target.value)}
-            fullWidth
-            margin="normal"
+          <input
+            accept="image/*"
+            type="file"
+            onChange={handleImageChange}
+            style={{ marginTop: "20px" }}
           />
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Preview"
+              style={{ marginTop: "20px", maxWidth: "100%" }}
+            />
+          )}
           <Button
             onClick={handleAddMenu}
             variant="contained"
