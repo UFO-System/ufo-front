@@ -10,13 +10,20 @@ import {
   TextField,
   Button,
   Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
 } from "@mui/material";
 
 const OrderManage = () => {
   const [depositor, setDepositor] = useState(""); // 입금자명
   const [amount, setAmount] = useState(""); // 입금 금액
-
-  const orders = [
+  const [isRejectionDialog, setIsRejectionDialog] = useState(false); // 거절 다이얼로그
+  const [isAcceptDialog, setIsAcceptDialog] = useState(false); // 수락 다이얼로그
+  const [rejectionReason, setRejectionReason] = useState(""); // 거절 사유
+  const [selectOrderId, setSelectOrderId] = useState(null); // 선택된 주문 ID
+  const [orders, setOrders] = useState([
     { id: 1, food: "어묵탕 외 3건", depositor: "배준재", amount: 20000 },
     { id: 2, food: "닭발 외 2건", depositor: "김호진", amount: 15000 },
     { id: 3, food: "어묵탕 외 1건", depositor: "옥준서", amount: 10000 },
@@ -29,14 +36,37 @@ const OrderManage = () => {
     { id: 10, food: "김치찜", depositor: "배준재", amount: 15000 },
     { id: 11, food: "만두 외 2건", depositor: "김호진", amount: 15000 },
     { id: 12, food: "음료", depositor: "옥준서", amount: 2000 },
-  ];
+  ]); // 주문 상태
 
-  const handleReject = (id) => {
-    console.log(`주문번호 ${id}가 거절되었습니다.`);
+  const handleReject = () => {
+    console.log(
+      `주문번호 ${selectOrderId}가 거절되었습니다. 거절 사유: ${rejectionReason}`
+    );
+    setOrders((prevOrders) =>
+      prevOrders.filter((order) => order.id !== selectOrderId)
+    );
+    setIsRejectionDialog(false);
+    setRejectionReason("");
+    setSelectOrderId(null);
   };
 
-  const handleAccept = (id) => {
-    console.log(`주문번호 ${id}가 수락되었습니다.`);
+  const handleAccept = () => {
+    console.log(`주문번호 ${selectOrderId}가 수락되었습니다.`);
+    setOrders((prevOrders) =>
+      prevOrders.filter((order) => order.id !== selectOrderId)
+    );
+    setIsAcceptDialog(false);
+    setSelectOrderId(null);
+  };
+
+  const handleOpenRejectionDialog = (id) => {
+    setSelectOrderId(id);
+    setIsRejectionDialog(true);
+  };
+
+  const handleOpenAcceptDialog = (id) => {
+    setSelectOrderId(id);
+    setIsAcceptDialog(true);
   };
 
   return (
@@ -95,7 +125,7 @@ const OrderManage = () => {
                     <Button
                       variant="contained"
                       color="error"
-                      onClick={() => handleReject(order.id)}
+                      onClick={() => handleOpenRejectionDialog(order.id)}
                       sx={{ marginRight: "5px" }}
                     >
                       거절
@@ -103,7 +133,7 @@ const OrderManage = () => {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={() => handleAccept(order.id)}
+                      onClick={() => handleOpenAcceptDialog(order.id)}
                     >
                       수락
                     </Button>
@@ -165,6 +195,50 @@ const OrderManage = () => {
           </TableContainer>
         </Box>
       </Box>
+
+      <Dialog
+        open={isRejectionDialog}
+        onClose={() => setIsRejectionDialog(false)}
+      >
+        <DialogContent>
+          <DialogContentText>
+            주문번호 {selectOrderId}를 거절하시겠습니까?
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            label={"거절 사유를 입력해주세요"}
+            type="text"
+            fullWidth
+            value={rejectionReason}
+            onChange={(e) => setRejectionReason(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsRejectionDialog(false)} color="primary">
+            취소
+          </Button>
+          <Button onClick={handleReject} color="primary">
+            거절
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={isAcceptDialog} onClose={() => setIsAcceptDialog(false)}>
+        <DialogContent>
+          <DialogContentText>
+            주문번호 {selectOrderId}를 수락하시겠습니까?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsAcceptDialog(false)} color="primary">
+            취소
+          </Button>
+          <Button onClick={handleAccept} color="primary">
+            확인
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

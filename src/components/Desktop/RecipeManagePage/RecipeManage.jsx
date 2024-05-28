@@ -14,6 +14,10 @@ import {
 } from "@mui/material";
 
 const RecipeManage = () => {
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('ko-KR').format(price) + "원";
+  };
+
   const [data, setData] = useState([
     {
       name: "어묵탕",
@@ -120,11 +124,9 @@ const RecipeManage = () => {
       return;
     }
 
-    const formattedPrice = new Intl.NumberFormat().format(parseFloat(newPrice));
-
     const updatedMenu = {
       name: newMenu,
-      price: formattedPrice,
+      price: parseInt(newPrice),
       image: newImage,
       addedDate: new Date(),
     };
@@ -147,7 +149,7 @@ const RecipeManage = () => {
       }}
     >
       <div style={{ width: "50%", height: "80vh", overflow: "auto" }}>
-        <TableContainer component={Paper}>
+      <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -199,7 +201,7 @@ const RecipeManage = () => {
                   </TableCell>
                   <TableCell>
                     <Typography variant="h6" gutterBottom>
-                      {menu.price}원
+                      {formatPrice(menu.price)}
                     </Typography>
                   </TableCell>
                   <TableCell>
