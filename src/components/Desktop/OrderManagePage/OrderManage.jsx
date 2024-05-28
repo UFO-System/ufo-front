@@ -70,12 +70,82 @@ const OrderManage = () => {
   };
 
   return (
-    <>
-      <Box
+    // 주문 내역 테이블 구역
+    <Box
+      sx={{ display: "flex", justifyContent: "space-between", height: "100vh" }}
+    >
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell
+                colSpan={5}
+                align="center"
+                sx={{ backgroundColor: "#002884", color: "white" }}
+              >
+                주문내역
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
+                주문번호
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
+                주문음식
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
+                입금자명
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
+                입금 금액
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
+                비고
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orders.map((order) => (
+              <TableRow key={order.id}>
+                <TableCell sx={{ textAlign: "center" }}>{order.id}</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>{order.food}</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>
+                  {order.depositor}
+                </TableCell>
+                <TableCell sx={{ textAlign: "center" }}>
+                  {order.amount}
+                </TableCell>
+                <TableCell sx={{ textAlign: "center" }}>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleReject(order.id)}
+                    sx={{ marginRight: "5px" }}
+                  >
+                    거절
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleAccept(order.id)}
+                  >
+                    수락
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <Box // 입금 내역 테이블 구역 (로그 창 구현은 아직 x)
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          height: "90vh",
+          display: "inline-block",
+          width: "40%",
+          backgroundColor: "lightgray",
+          padding: "5px",
+          marginLeft: "10px",
+          marginRight: "10px",
         }}
       >
         <TableContainer component={Paper}>
@@ -83,163 +153,42 @@ const OrderManage = () => {
             <TableHead>
               <TableRow>
                 <TableCell
-                  colSpan={5}
+                  colSpan={2}
                   align="center"
                   sx={{ backgroundColor: "#002884", color: "white" }}
                 >
-                  주문내역
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
-                  주문번호
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
-                  주문음식
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
-                  입금자명
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
-                  입금 금액
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>
-                  비고
+                  입금내역
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((order) => (
-                <TableRow key={order.id}>
-                  <TableCell sx={{ textAlign: "center" }}>{order.id}</TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {order.food}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {order.depositor}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {order.amount}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    <Button
-                      variant="contained"
-                      color="error"
-                      onClick={() => handleOpenRejectionDialog(order.id)}
-                      sx={{ marginRight: "5px" }}
-                    >
-                      거절
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => handleOpenAcceptDialog(order.id)}
-                    >
-                      수락
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              <TableRow>
+                <TableCell>입금자명</TableCell>
+                <TableCell>
+                  <TextField
+                    value={depositor}
+                    onChange={(e) => setDepositor(e.target.value)}
+                    fullWidth
+                    margin="none"
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>입금 금액</TableCell>
+                <TableCell>
+                  <TextField
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    fullWidth
+                    margin="none"
+                  />
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
-
-        <Box
-          sx={{
-            display: "inline-block",
-            width: "40%",
-            backgroundColor: "lightgray",
-            padding: "5px",
-            marginLeft: "10px",
-            marginRight: "10px",
-          }}
-        >
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell
-                    colSpan={2}
-                    align="center"
-                    sx={{ backgroundColor: "#002884", color: "white" }}
-                  >
-                    입금내역
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>입금자명</TableCell>
-                  <TableCell>
-                    <TextField
-                      value={depositor}
-                      onChange={(e) => setDepositor(e.target.value)}
-                      fullWidth
-                      margin="none"
-                    />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>입금 금액</TableCell>
-                  <TableCell>
-                    <TextField
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      fullWidth
-                      margin="none"
-                    />
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
       </Box>
-
-      <Dialog
-        open={isRejectionDialog}
-        onClose={() => setIsRejectionDialog(false)}
-      >
-        <DialogContent>
-          <DialogContentText>
-            주문번호 {selectOrderId}를 거절하시겠습니까?
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            label={"거절 사유를 입력해주세요"}
-            type="text"
-            fullWidth
-            value={rejectionReason}
-            onChange={(e) => setRejectionReason(e.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsRejectionDialog(false)} color="primary">
-            취소
-          </Button>
-          <Button onClick={handleReject} color="primary">
-            거절
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog open={isAcceptDialog} onClose={() => setIsAcceptDialog(false)}>
-        <DialogContent>
-          <DialogContentText>
-            주문번호 {selectOrderId}를 수락하시겠습니까?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsAcceptDialog(false)} color="primary">
-            취소
-          </Button>
-          <Button onClick={handleAccept} color="primary">
-            확인
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+    </Box>
   );
 };
 
