@@ -59,7 +59,10 @@ export default function SalesDetailViewer({ data }) {
   const sortedSales = stableSort(data, getComparator(order, orderBy));
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ height: { md: "80vh" }, minHeight: "30px" }}
+    >
       <Table>
         <TableHead>
           <TableRow>

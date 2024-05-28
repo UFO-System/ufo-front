@@ -1,25 +1,10 @@
-import {
-  Box,
-  Button,
-  Typography,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import "./css/Phone.css";
+import { Box, Button, Typography } from "@mui/material";
+import React from "react";
+import { isMobile } from "react-device-detect";
+import { useParams } from "react-router-dom";
 
-const Phone = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const navigate = useNavigate();
-
-  const handleOrderPageClick = () => {
-    navigate("/OrderPage1");
-  };
-
-  const handleKitchenPageClick = () => {
-    navigate("/KitchenPage");
-  };
+const UserPage = () => {
+  const { id, tableid } = useParams();
 
   return (
     <div>
@@ -37,7 +22,7 @@ const Phone = () => {
       >
         <Button
           variant="contained"
-          onClick={handleOrderPageClick}
+          //   onClick={}
           sx={{
             width: "100%",
             height: isMobile ? "48vh" : "48vh",
@@ -47,7 +32,7 @@ const Phone = () => {
         </Button>
         <Button
           variant="contained"
-          onClick={handleKitchenPageClick}
+          //   onClick={}
           sx={{
             width: "100%",
             height: isMobile ? "48vh" : "48vh",
@@ -60,4 +45,4 @@ const Phone = () => {
   );
 };
 
-export default Phone;
+export default UserPage;
