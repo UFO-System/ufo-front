@@ -1,10 +1,6 @@
 .app {
   text-align: center;
 }
-.name h4 {
-  text-align: left;
-  padding-left: 20px;
-}
 .name {
   display: flex;
   flex-direction: column;
@@ -14,21 +10,40 @@
   line-height: 70px;
   margin: 0;
 }
-
 .menu {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid black;
   padding-left: 20px;
   text-align: left;
 }
-.OrderPageBtn {
+.btn {
   float: right;
+  margin: 5px;
 }
 .orderBt {
   width: 120px;
   height: 50px;
   float: none;
+  margin: 10px;
 }
 
-.bottom {
-  border-bottom: 1px solid lightgray;
+body {
+  margin: 0px;
+}
+.app {
+  height: 100vh;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+}
+.input {
+  text-align: center;
+  margin: 10px;
+}
+.textdiv {
+  text-align: center;
+  margin-top: 80px;
+}
+.centered-image {
+  display: block;
+  margin: 0 auto;
 }

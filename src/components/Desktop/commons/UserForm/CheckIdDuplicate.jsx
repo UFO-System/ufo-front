@@ -1,8 +1,7 @@
 import { Button } from "@mui/material";
-import React from "react";
-
+import React, { useState } from "react";
+import Loading from "../../../commons/Loading/Loading";
 export default function CheckIdDuplicate({ disabled }) {
-  // 중복확인 서버랑
   return (
     <Button variant="contained" size="small" disabled={disabled}>
       중복 확인

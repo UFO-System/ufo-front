@@ -12,23 +12,27 @@ const salesItem = [
 const SalesManage = () => {
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          height: "90vh",
-        }}
-      >
-        <SalesDateSelector />
+      <Box sx={{ display: { md: "flex" } }}>
         <Box
           sx={{
-            display: "inline-block",
-            width: "140%",
-            backgroundColor: "lightgray",
-            padding: "5px",
+            display: { xs: "flex", md: "inline-block" },
+            justifyContent: "space-between",
+            ml: "10px",
+            mr: "10px",
+            width: { md: "40%" },
+            mb: "20px",
+          }}
+        >
+          <SalesDateSelector />
+        </Box>
+        <Box
+          sx={{
+            display: { xs: "flex", md: "inline-block" },
             marginLeft: "10px",
             marginRight: "10px",
-            height: "89vh",
+            justifyContent: "space-between",
+            ml: "10px",
+            width: { md: "60%" },
           }}
         >
           <SalesDetailViewer data={salesItem} />
