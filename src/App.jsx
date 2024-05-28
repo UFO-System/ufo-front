@@ -175,7 +175,7 @@ function App() {
           }
         />
         <Route
-          path="/:id/:tableid"
+          path="/:group/:tableid"
           element={
             <>
               <LogoutTopBar />

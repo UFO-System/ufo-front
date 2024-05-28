@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect";
 import { useParams } from "react-router-dom";
 
 const UserPage = () => {
-  const { id, tableid } = useParams();
+  const { group, tableid } = useParams();
 
   return (
     <div>

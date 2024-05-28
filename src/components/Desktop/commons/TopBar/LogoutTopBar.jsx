@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -11,6 +11,13 @@ import UFO from "../../../../assets/UFO.png";
 
 function LogoutTopBar({ children, isLogin }) {
   const navigate = useNavigate();
+  const { group } = useParams();
+  // 텍스트가 10자를 넘으면 말줄임표로 자르는 함수
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
   return (
     <div className="notLoginTopBar">
       <AppBar position="static">
@@ -49,6 +56,44 @@ function LogoutTopBar({ children, isLogin }) {
                 </Typography>
               </Box>
             </Box>
+            {group !== undefined && (
+              <Box
+                sx={{
+                  float: "right",
+                }}
+              >
+                <Typography
+                  sx={{
+                    my: 3,
+                    marginRight: "10px",
+                    display: { xs: "inline-block", sm: "none" },
+                    fontFamily: "monospace",
+                    fontWeight: 600,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                    fontSize: "12px",
+                  }}
+                >
+                  {truncateText(group, 7)}
+                </Typography>
+                <Typography
+                  sx={{
+                    my: 3,
+                    marginRight: "10px",
+                    display: { xs: "none", sm: "inline-block" },
+                    fontFamily: "monospace",
+                    fontWeight: 600,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                    fontSize: "12px",
+                  }}
+                >
+                  {group}
+                </Typography>
+              </Box>
+            )}
           </Toolbar>
         </Container>
       </AppBar>
