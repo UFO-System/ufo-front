@@ -110,11 +110,7 @@ const RecipeManage = () => {
   };
 
   const handleAddMenu = () => {
-    if (
-      newMenu.trim() === "" ||
-      newPrice.trim() === "" ||
-      newImage === null
-    ) {
+    if (newMenu.trim() === "" || newPrice.trim() === "" || newImage === null) {
       alert("모든 필드를 입력하세요.");
       return;
     }
