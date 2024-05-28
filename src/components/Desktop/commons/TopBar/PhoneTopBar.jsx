@@ -11,15 +11,16 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { AppBar, Divider } from "@mui/material";
 import "./css/TopBar.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UFO from "../../../../assets/UFO.png";
+import { UserInfoContext } from "../../../../contexts/UserInfoContext";
 const menuLists = ["매출관리", "마이페이지", "로그아웃"];
 const pages = ["SalesManage", "MyPage", ""];
 function PhoneTopBar({ children }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [, , removeCookie] = useCookies(["id"]);
   const navigate = useNavigate();
-
+  const { group } = useContext(UserInfoContext);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -31,6 +32,12 @@ function PhoneTopBar({ children }) {
     // 전달된 쿠키 삭제
     removeCookie("user"); // 쿠키를 삭제
     navigate("/");
+  };
+  // 텍스트가 10자를 넘으면 말줄임표로 자르는 함수
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
   };
 
   return (
@@ -107,32 +114,7 @@ function PhoneTopBar({ children }) {
                 UFO
               </Typography>
             </Box>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {/* {menuLists.map((menuList, idx) => (
-                <>
-                  <Button
-                    key={menuList + "a"}
-                    onClick={() => {
-                      handleCloseNavMenu();
-                      if (idx == 2) {
-                        handleLogout();
-                      } else {
-                        navigate("/" + pages[idx]);
-                      }
-                    }}
-                    sx={{
-                      my: 2,
-                      color: "white",
-                      display: "block",
-                      marginLeft: "20px",
-                    }}
-                  >
-                    {menuList}
-                  </Button>
-                  <Divider orientation="vertical" sx={{ display: "inline" }} />
-                </>
-              ))} */}
-            </Box>
+
             <Box
               sx={{
                 float: "right",
@@ -142,18 +124,34 @@ function PhoneTopBar({ children }) {
                 sx={{
                   my: 3,
                   marginRight: "10px",
-                  display: "inline-block",
+                  display: { xs: "inline-block", sm: "none" },
                   fontFamily: "monospace",
-                  fontWeight: 700,
+                  fontWeight: 600,
                   letterSpacing: ".3rem",
                   color: "inherit",
                   textDecoration: "none",
+                  fontSize: "12px",
                 }}
               >
-                관리자:김호진
+                {truncateText(group, 7)}
+              </Typography>
+              <Typography
+                sx={{
+                  my: 3,
+                  marginRight: "10px",
+                  display: { xs: "none", sm: "inline-block" },
+                  fontFamily: "monospace",
+                  fontWeight: 600,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                  fontSize: "12px",
+                }}
+              >
+                {group}
               </Typography>
             </Box>
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ display: { xs: "none", md: "flex" }, ml: "auto" }}>
               {menuLists.map((menuList, idx) => (
                 <>
                   <Button
