@@ -39,8 +39,12 @@ const OrderManage = () => {
   ]); // 주문 상태
 
   const handleReject = () => {
-    console.log(`주문번호 ${selectOrderId}가 거절되었습니다. 거절 사유: ${rejectionReason}`);
-    setOrders((prevOrders) => prevOrders.filter((order) => order.id !== selectOrderId));
+    console.log(
+      `주문번호 ${selectOrderId}가 거절되었습니다. 거절 사유: ${rejectionReason}`
+    );
+    setOrders((prevOrders) =>
+      prevOrders.filter((order) => order.id !== selectOrderId)
+    );
     setIsRejectionDialog(false);
     setRejectionReason("");
     setSelectedOrderId(null);
@@ -48,7 +52,9 @@ const OrderManage = () => {
 
   const handleAccept = () => {
     console.log(`주문번호 ${selectOrderId}가 수락되었습니다.`);
-    setOrders((prevOrders) => prevOrders.filter((order) => order.id !== selectOrderId));
+    setOrders((prevOrders) =>
+      prevOrders.filter((order) => order.id !== selectOrderId)
+    );
     setIsAcceptDialog(false);
     setSelectedOrderId(null);
   };
@@ -190,7 +196,10 @@ const OrderManage = () => {
         </Box>
       </Box>
 
-      <Dialog open={isRejectionDialog} onClose={() => setIsRejectionDialog(false)}>
+      <Dialog
+        open={isRejectionDialog}
+        onClose={() => setIsRejectionDialog(false)}
+      >
         <DialogContent>
           <DialogContentText>
             주문번호 {selectOrderId}를 거절하시겠습니까?
