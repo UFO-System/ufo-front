@@ -12,6 +12,7 @@ import {
   TableSortLabel,
   TextField,
 } from "@mui/material";
+import axios from "axios";
 
 const RecipeManage = () => {
   const formatPrice = (price) => {
@@ -121,21 +122,30 @@ const RecipeManage = () => {
       return;
     }
 
-    const updatedMenu = {
-      name: newMenu,
-      price: parseInt(newPrice),
-      image: URL.createObjectURL(newImage),
-      addedDate: new Date(),
-    };
+    const formData = new FormData();
+    formData.append("name", newMenu);
+    formData.append("price", newPrice);
+    formData.append("image", newImage);
 
-    const updatedMenus = [...data, updatedMenu];
-
-    setData(updatedMenus);
-
-    setNewMenu("");
-    setNewPrice("");
-    setNewImage(null);
-    setImagePreview(null);
+    axios
+      .post("/api/menus", formData)
+      .then((response) => {
+        const updatedMenu = {
+          name: newMenu,
+          price: parseInt(newPrice),
+          image: URL.createObjectURL(newImage),
+          addedDate: new Date(),
+        };
+        const updatedMenus = [...data, updatedMenu];
+        setData(updatedMenus);
+        setNewMenu("");
+        setNewPrice("");
+        setNewImage(null);
+        setImagePreview(null);
+      })
+      .catch((error) => {
+        console.error("Error uploading image: ", error);
+      });
   };
 
   const handleImageChange = (event) => {
@@ -243,19 +253,21 @@ const RecipeManage = () => {
             fullWidth
             margin="normal"
           />
-          <input
-            accept="image/*"
-            type="file"
-            onChange={handleImageChange}
-            style={{ marginTop: "20px" }}
-          />
-          {imagePreview && (
-            <img
-              src={imagePreview}
-              alt="Preview"
-              style={{ marginTop: "20px", maxWidth: "100%" }}
+          <div style={{ marginTop: "20px" }}>
+            <input
+              accept="image/*"
+              type="file"
+              onChange={handleImageChange}
+              style={{ display: "block" }}
             />
-          )}
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                style={{ marginTop: "20px", maxWidth: "100%" }}
+              />
+            )}
+          </div>
           <Button
             onClick={handleAddMenu}
             variant="contained"
