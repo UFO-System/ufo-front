@@ -184,6 +184,7 @@ function App() {
             </>
           }
         />
+        {/* 유저용 주방화면 */}
         <Route
           path="/UserKitchenPage"
           element={

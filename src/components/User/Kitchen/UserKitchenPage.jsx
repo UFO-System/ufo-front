@@ -1,11 +1,15 @@
 import React from "react";
-import LogoutTopBar from "../../Desktop/commons/TopBar/LogoutTopBar";
+import data from "../../Mobile/Kitchen/data.json";
+import UserOrderBoard from "./UserOrderBoard";
 
 function UserKitchenPage() {
   return (
     <>
-      <LogoutTopBar></LogoutTopBar>
-      <div>안녕</div>
+      <body className="kitchenBody">
+      {Object.entries(data).map(([key, values]) => (
+          <UserOrderBoard key={key} values={values} />
+        ))}
+      </body>
     </>
   );
 }

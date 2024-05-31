@@ -10,7 +10,7 @@ function KitchenPage() {
     <>
       <Header />
       <body className="kitchenBody">
-        {Object.entries(data).map(([key, values]) => (
+        {Object.entries(data).slice(0,4).map(([key, values]) => (
           <OrderBoard key={key} tableNo ={key} values={values} />
         ))}
       </body>
