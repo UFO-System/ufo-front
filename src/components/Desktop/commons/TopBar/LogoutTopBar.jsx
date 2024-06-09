@@ -11,7 +11,7 @@ import UFO from "../../../../assets/UFO.png";
 
 function LogoutTopBar({ children, isLogin }) {
   const navigate = useNavigate();
-  const { group } = useParams();
+  const { group, tableid } = useParams();
   // 텍스트가 10자를 넘으면 말줄임표로 자르는 함수
   const truncateText = (text, maxLength) => {
     return text.length > maxLength
@@ -21,11 +21,9 @@ function LogoutTopBar({ children, isLogin }) {
   return (
     <div className="notLoginTopBar">
       <AppBar position="static">
-        <Container maxWidth="xl" sx={{ margin: "0" }}>
+        <Container maxWidth="xl" sx={{ margin: "0", paddingRight: "0" }}>
           <Toolbar disableGutters>
-            <Box
-              sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
-            >
+            <Box sx={{ flexGrow: 1, display: "flex" }}>
               <Box
                 sx={{
                   display: "flex",
@@ -35,18 +33,25 @@ function LogoutTopBar({ children, isLogin }) {
                 }}
                 onClick={() => (isLogin ? navigate("/Phone") : "")}
               >
-                <img
+                <Box
+                  component="img"
                   src={UFO}
-                  alt="UFO"
-                  style={{ width: "43px", height: "43px", marginRight: "8px" }}
+                  sx={{
+                    width: { xs: "30px", md: "43px" },
+                    height: { xs: "30px", md: "43px" },
+                    marginRight: "8px",
+                  }}
                 />
                 <Typography
                   variant="h6"
                   noWrap
                   component="a"
                   sx={{
+                    mr: 2,
+                    display: { xs: "flex", md: "none" },
                     fontFamily: "monospace",
                     fontWeight: 700,
+                    fontSize: { xs: "15px", md: "18px" },
                     letterSpacing: ".3rem",
                     color: "inherit",
                     textDecoration: "none",
@@ -59,6 +64,7 @@ function LogoutTopBar({ children, isLogin }) {
             {group !== undefined && (
               <Box
                 sx={{
+                  mt: { xs: "-20px", md: "0px" },
                   float: "right",
                 }}
               >
@@ -76,6 +82,10 @@ function LogoutTopBar({ children, isLogin }) {
                   }}
                 >
                   {truncateText(group, 7)}
+                  <br />
+                  <Box sx={{ float: "right", mt: "5px", mb: "-20px" }}>
+                    {tableid}번 테이블
+                  </Box>
                 </Typography>
                 <Typography
                   sx={{

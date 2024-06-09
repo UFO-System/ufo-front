@@ -20,7 +20,7 @@ function PhoneTopBar({ children }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [, , removeCookie] = useCookies(["id"]);
   const navigate = useNavigate();
-  const { group } = useContext(UserInfoContext);
+  const { group, tableid } = useContext(UserInfoContext);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -43,7 +43,7 @@ function PhoneTopBar({ children }) {
   return (
     <>
       <AppBar position="static">
-        <Container maxWidth="xl" sx={{ margin: "0" }}>
+        <Container maxWidth="xl" sx={{ margin: "0", paddingRight: "0" }}>
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <Box
@@ -55,11 +55,12 @@ function PhoneTopBar({ children }) {
                 }}
                 onClick={() => navigate("/Phone")}
               >
-                <img
+                <Box
+                  component="img"
                   src={UFO}
-                  style={{
-                    width: "43px",
-                    height: "43px",
+                  sx={{
+                    width: { xs: "30px", md: "43px" },
+                    height: { xs: "30px", md: "43px" },
                     marginRight: "8px",
                   }}
                 />
@@ -72,6 +73,7 @@ function PhoneTopBar({ children }) {
                     display: { xs: "flex", md: "none" },
                     fontFamily: "monospace",
                     fontWeight: 700,
+                    fontSize: { xs: "15px", md: "18px" },
                     letterSpacing: ".3rem",
                     color: "inherit",
                     textDecoration: "none",
@@ -90,7 +92,8 @@ function PhoneTopBar({ children }) {
               }}
               onClick={() => navigate("/Phone")}
             >
-              <img
+              <Box
+                component={"img"}
                 src={UFO}
                 style={{
                   width: "43px",
@@ -122,7 +125,6 @@ function PhoneTopBar({ children }) {
             >
               <Typography
                 sx={{
-                  my: 3,
                   marginRight: "10px",
                   display: { xs: "inline-block", sm: "none" },
                   fontFamily: "monospace",
@@ -135,6 +137,7 @@ function PhoneTopBar({ children }) {
               >
                 {truncateText(group, 7)}
               </Typography>
+
               <Typography
                 sx={{
                   my: 3,

@@ -28,7 +28,7 @@ const UserPage = () => {
             height: isMobile ? "48vh" : "48vh",
           }}
         >
-          <Typography variant="h3">주문화면</Typography>
+          <Typography variant="h3">주문하기</Typography>
         </Button>
         <Button
           variant="contained"
@@ -38,7 +38,7 @@ const UserPage = () => {
             height: isMobile ? "48vh" : "48vh",
           }}
         >
-          <Typography variant="h3">부엌화면</Typography>
+          <Typography variant="h3">오더 모니터링</Typography>
         </Button>
       </Box>
     </div>

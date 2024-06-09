@@ -1,8 +1,9 @@
-import React from "react";
+import { useEffect } from "react";
 import { Box } from "@mui/material";
 import SalesDateSelector from "./SalesDateSelector";
 import SalesDetailViewer from "./SalesDetailViewer";
-
+import SalesAlertModal from "./SalesAlertModal";
+import { isMobile } from "react-device-detect";
 const salesItem = [
   { time: "10:20", menu: "김치찜", price: 10000 },
   { time: "09:21", menu: "계란찜", price: 19900 },
@@ -12,6 +13,7 @@ const salesItem = [
 const SalesManage = () => {
   return (
     <>
+      {isMobile && <SalesAlertModal modalState={true} />}
       <Box sx={{ display: { md: "flex" } }}>
         <Box
           sx={{
