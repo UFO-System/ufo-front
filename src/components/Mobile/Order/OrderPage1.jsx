@@ -113,7 +113,7 @@ const OrderPage1 = () => {
           position="static"
           style={{ height: "130px", display: "flex" }}
         >
-          <div className="bottom" >
+          <div>
             <p style={{margin:"20px"}}>
               총 수량: {totalCount}개 | 총 금액: {totalPrice}원 
             </p>
