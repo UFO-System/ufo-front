@@ -13,8 +13,8 @@ import { AppBar, Divider } from "@mui/material";
 import "./css/TopBar.css";
 import { useState } from "react";
 import UFO from "../../../../assets/UFO.png";
-const menuLists = ["주문 관리", "메뉴 관리", "매출 관리"];
-const pages = ["OrderManage", "RecipeManage", "SalesManage"];
+const menuLists = ["주문 관리", "메뉴 관리", "매출 관리", "QR 관리"];
+const pages = ["OrderManage", "RecipeManage", "SalesManage", "QRManage"];
 function TopBar({ children }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [, , removeCookie] = useCookies(["id"]);
@@ -107,6 +107,7 @@ function TopBar({ children }) {
                   <MenuItem
                     key={menuList}
                     onClick={() => {
+                      handleCloseNavMenu();
                       navigate("/" + pages[idx]);
                     }}
                   >

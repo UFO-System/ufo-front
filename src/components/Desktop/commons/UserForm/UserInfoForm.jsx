@@ -5,6 +5,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import CheckIdDuplicate from "./CheckIdDuplicate";
+import GroupsIcon from "@mui/icons-material/Groups";
 
 /**
  * 회원가입 및 정보 수정 입력필드
@@ -143,6 +144,27 @@ function UserInfoForm({ isMyPage, editState, errors, handleChange, userData }) {
                     startAdornment: (
                       <InputAdornment position="start">
                         <AccountCircle />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </tr>
+              <tr style={{ verticalAlign: "center" }}>
+                <TextField
+                  fullWidth
+                  id="group"
+                  label="소속"
+                  value={userData.group}
+                  variant="standard"
+                  disabled={!editState}
+                  error={errors.group}
+                  placeholder="학교나 학교+학과를 입력해주세요"
+                  onChange={handleChange}
+                  sx={{ marginBottom: "30px" }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <GroupsIcon />
                       </InputAdornment>
                     ),
                   }}

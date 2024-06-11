@@ -11,12 +11,13 @@ export default function MyPage() {
 
   //기본 정보 통신으로 받아와야함
   const [userData, setUserData] = useState({
-    id: "홍길동",
+    id: "testId",
     pw: "",
     pwCheck: "",
-    userName: "",
-    account: "",
-    phoneNumber: "",
+    userName: "김ㅇㅇ",
+    account: "6126603927929",
+    phoneNumber: "01012345678",
+    group: "연암공과대학교",
   });
 
   const [errors, setErrors] = useState({
@@ -26,6 +27,7 @@ export default function MyPage() {
     userName: false,
     account: false,
     phoneNumber: false,
+    group: false,
   });
   const validate = () => {
     let newErrors = {
@@ -35,6 +37,7 @@ export default function MyPage() {
       userName: userData.userName === "",
       account: userData.account === "",
       phoneNumber: userData.phoneNumber.length !== 11,
+      group: userData.group === "",
     };
 
     setErrors(newErrors);
@@ -47,7 +50,7 @@ export default function MyPage() {
     if (validate()) {
       alert("수정되었습니다.");
       console.log(userData);
-      navigate("/OrderManage");
+      navigate("/MyPage", { replace: true });
     } else {
       alert("정보를 확인해주세요.");
     }
@@ -61,7 +64,7 @@ export default function MyPage() {
 
   const handleBack = () => {
     if (confirm("정보수정을 취소하시겠습니까?")) {
-      navigate("/OrderManage");
+      navigate(-1);
     }
   };
   //수정모드에서 수정버튼 클릭시

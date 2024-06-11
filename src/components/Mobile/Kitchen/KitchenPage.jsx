@@ -1,17 +1,19 @@
+import React from "react";
 import "./css/KitchenPage.css";
 import OrderBoard from "./OrderBoard";
-import Footer from "./Footer";
+import Header from "./Header";
 import data from "./data.json";
+import LogoutTopBar from "../../Desktop/commons/TopBar/LogoutTopBar";
 
 function KitchenPage() {
   return (
     <>
+      <Header />
       <body className="kitchenBody">
-        {data.table1.map((exams) => (
-          <OrderBoard order_id={exams} />
+        {Object.entries(data).map(([key, values]) => (
+          <OrderBoard key={key} tableNo ={key} values={values} />
         ))}
       </body>
-      <Footer />
     </>
   );
 }

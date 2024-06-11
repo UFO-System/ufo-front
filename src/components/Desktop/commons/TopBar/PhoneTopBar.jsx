@@ -11,15 +11,16 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { AppBar, Divider } from "@mui/material";
 import "./css/TopBar.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UFO from "../../../../assets/UFO.png";
-const menuLists = ["주문 관리", "메뉴 관리", "매출 관리"];
-const pages = ["OrderManage", "RecipeManage", "SalesManage"];
+import { UserInfoContext } from "../../../../contexts/UserInfoContext";
+const menuLists = ["매출관리", "마이페이지", "로그아웃"];
+const pages = ["SalesManage", "MyPage", ""];
 function PhoneTopBar({ children }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [, , removeCookie] = useCookies(["id"]);
   const navigate = useNavigate();
-
+  const { group } = useContext(UserInfoContext);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -32,12 +33,54 @@ function PhoneTopBar({ children }) {
     removeCookie("user"); // 쿠키를 삭제
     navigate("/");
   };
+  // 텍스트가 10자를 넘으면 말줄임표로 자르는 함수
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
 
   return (
     <>
       <AppBar position="static">
         <Container maxWidth="xl" sx={{ margin: "0" }}>
           <Toolbar disableGutters>
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <Box
+                sx={{
+                  display: { xs: "flex", md: "none" },
+                  alignItems: "center",
+                  mr: 1,
+                  cursor: "pointer",
+                }}
+                onClick={() => navigate("/Phone")}
+              >
+                <img
+                  src={UFO}
+                  style={{
+                    width: "43px",
+                    height: "43px",
+                    marginRight: "8px",
+                  }}
+                />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "flex", md: "none" },
+                    fontFamily: "monospace",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                >
+                  UFO
+                </Typography>
+              </Box>
+            </Box>
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },
@@ -45,7 +88,7 @@ function PhoneTopBar({ children }) {
                 mr: 1,
                 cursor: "pointer",
               }}
-              onClick={() => navigate("/OrderManage")}
+              onClick={() => navigate("/Phone")}
             >
               <img
                 src={UFO}
@@ -61,7 +104,6 @@ function PhoneTopBar({ children }) {
                 component="a"
                 sx={{
                   mr: 2,
-                  display: { xs: "none", md: "flex" },
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
@@ -73,7 +115,74 @@ function PhoneTopBar({ children }) {
               </Typography>
             </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{
+                float: "right",
+              }}
+            >
+              <Typography
+                sx={{
+                  my: 3,
+                  marginRight: "10px",
+                  display: { xs: "inline-block", sm: "none" },
+                  fontFamily: "monospace",
+                  fontWeight: 600,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                  fontSize: "12px",
+                }}
+              >
+                {truncateText(group, 7)}
+              </Typography>
+              <Typography
+                sx={{
+                  my: 3,
+                  marginRight: "10px",
+                  display: { xs: "none", sm: "inline-block" },
+                  fontFamily: "monospace",
+                  fontWeight: 600,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                  fontSize: "12px",
+                }}
+              >
+                {group}
+              </Typography>
+            </Box>
+            <Box sx={{ display: { xs: "none", md: "flex" }, ml: "auto" }}>
+              {menuLists.map((menuList, idx) => (
+                <>
+                  <Button
+                    key={menuList + "a"}
+                    onClick={() => {
+                      handleCloseNavMenu();
+                      if (idx == 2) {
+                        handleLogout();
+                      } else {
+                        navigate("/" + pages[idx]);
+                      }
+                    }}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    {menuList}
+                  </Button>
+                  <Divider orientation="vertical" sx={{ display: "inline" }} />
+                </>
+              ))}
+            </Box>
+            <Box
+              sx={{
+                display: { xs: "flex", md: "none" },
+                float: "right",
+              }}
+            >
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -106,6 +215,7 @@ function PhoneTopBar({ children }) {
                   <MenuItem
                     key={menuList}
                     onClick={() => {
+                      handleCloseNavMenu();
                       navigate("/" + pages[idx]);
                     }}
                   >
@@ -113,114 +223,6 @@ function PhoneTopBar({ children }) {
                   </MenuItem>
                 ))}
               </Menu>
-            </Box>
-            <Box
-              sx={{
-                display: { xs: "flex", md: "none" },
-                alignItems: "center",
-                mr: 1,
-                cursor: "pointer",
-              }}
-              onClick={() => navigate("/OrderManage")}
-            >
-              <img
-                src={UFO}
-                style={{
-                  width: "43px",
-                  height: "43px",
-                  marginRight: "8px",
-                }}
-              />
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                sx={{
-                  mr: 2,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                UFO
-              </Typography>
-            </Box>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {menuLists.map((menuList, idx) => (
-                <>
-                  <Button
-                    key={menuList + "a"}
-                    onClick={() => {
-                      handleCloseNavMenu();
-                      navigate("/" + pages[idx]);
-                    }}
-                    sx={{
-                      my: 2,
-                      color: "white",
-                      display: "block",
-                      marginLeft: "20px",
-                    }}
-                  >
-                    {menuList}
-                  </Button>
-                  <Divider orientation="vertical" sx={{ display: "inline" }} />
-                </>
-              ))}
-            </Box>
-            <Box sx={{ float: "right" }}>
-              <Typography
-                sx={{
-                  my: 2,
-                  marginRight: "10px",
-                  display: "inline-block",
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                관리자:김호진
-              </Typography>
-              <Button
-                onClick={() => navigate("/Phone")}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "inline",
-                  marginRight: "10px",
-                  marginLeft: "10px",
-                }}
-              >
-                사용자 화면
-              </Button>
-              <Divider orientation="vertical" sx={{ display: "inline" }} />
-              <Button
-                onClick={() => navigate("/MyPage")}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "inline",
-                  marginRight: "10px",
-                  marginLeft: "10px",
-                }}
-              >
-                마이페이지
-              </Button>
-              <Divider orientation="vertical" sx={{ display: "inline" }} />
-              <Button
-                onClick={() => handleLogout()}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "inline",
-                  marginLeft: "10px",
-                }}
-              >
-                로그아웃
-              </Button>
             </Box>
           </Toolbar>
         </Container>

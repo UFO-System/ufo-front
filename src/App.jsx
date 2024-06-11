@@ -15,6 +15,11 @@ import Phone from "./components/Mobile/Phone";
 import LogoutTopBar from "./components/Desktop/commons/TopBar/LogoutTopBar";
 import TopBar from "./components/Desktop/commons/TopBar/TopBar";
 import { UserInfoProvider } from "./contexts/UserInfoContext";
+import PhoneTopBar from "./components/Desktop/commons/TopBar/PhoneTopBar";
+import UserPage from "./components/User/UserPage";
+import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
+import QRManage from "./components/Desktop/QRManagePage/QRManage";
+import KitchenTopBar from "./components/Desktop/commons/TopBar/KitchenTopBar";
 function App() {
   return (
     <Router>
@@ -77,8 +82,27 @@ function App() {
           path="/SalesManage"
           element={
             <UserInfoProvider>
+              {isMobile || isTablet ? (
+                <>
+                  <PhoneTopBar />
+                  <SalesManage />
+                </>
+              ) : (
+                <>
+                  <TopBar />
+                  <SalesManage />
+                </>
+              )}
+            </UserInfoProvider>
+          }
+        />
+        {/* QR 생성 */}
+        <Route
+          path="/QRManage"
+          element={
+            <UserInfoProvider>
               <TopBar>
-                <SalesManage />
+                <QRManage />
               </TopBar>
             </UserInfoProvider>
           }
@@ -88,9 +112,17 @@ function App() {
           path="/MyPage"
           element={
             <UserInfoProvider>
-              <TopBar>
-                <MyPage />
-              </TopBar>
+              {isMobile || isTablet ? (
+                <>
+                  <PhoneTopBar />
+                  <MyPage />
+                </>
+              ) : (
+                <>
+                  <TopBar />
+                  <MyPage />
+                </>
+              )}
             </UserInfoProvider>
           }
         />
@@ -100,7 +132,7 @@ function App() {
           path="/Phone"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <Phone />
             </UserInfoProvider>
           }
@@ -110,7 +142,7 @@ function App() {
           path="/KitchenPage"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <KitchenTopBar />
               <KitchenPage />
             </UserInfoProvider>
           }
@@ -120,7 +152,7 @@ function App() {
           path="/OrderPage1"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <OrderPage1 />
             </UserInfoProvider>
           }
@@ -129,7 +161,7 @@ function App() {
           path="/OrderPage2"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <OrderPage2 />
             </UserInfoProvider>
           }
@@ -138,9 +170,18 @@ function App() {
           path="/OrderPage3"
           element={
             <UserInfoProvider>
-              <LogoutTopBar isLogin={true} />
+              <PhoneTopBar />
               <OrderPage3 />
             </UserInfoProvider>
+          }
+        />
+        <Route
+          path="/:group/:tableid"
+          element={
+            <>
+              <LogoutTopBar />
+              <UserPage />
+            </>
           }
         />
       </Routes>
