@@ -11,12 +11,13 @@ export default function MyPage() {
 
   //기본 정보 통신으로 받아와야함
   const [userData, setUserData] = useState({
-    id: "홍길동",
+    id: "testId",
     pw: "",
     pwCheck: "",
-    userName: "",
-    account: "",
-    phoneNumber: "",
+    userName: "김ㅇㅇ",
+    account: "6126603927929",
+    phoneNumber: "01012345678",
+    group: "연암공과대학교",
   });
 
   const [errors, setErrors] = useState({
