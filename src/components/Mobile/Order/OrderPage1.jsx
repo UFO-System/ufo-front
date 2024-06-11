@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Input from "@mui/material/Input";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 import { useNavigate } from "react-router-dom";
 import "./css/OrderPage.css";
-
+import menu1 from  "./css/menu1.jpg"
+import menu2 from  "./css/menu2.jpg"
+import menu3 from  "./css/menu3.jpg"
 const OrderPage1 = () => {
   // 매장 이름
   const name = "UFO";
 
   // 메뉴
   const [menus, setMenus] = useState([
-    { id: 1, name: "메뉴1", count: 0, price: 1000 },
-    { id: 2, name: "메뉴2", count: 0, price: 2000 },
-    { id: 3, name: "메뉴3", count: 0, price: 3000 },
+    { id: 1, name: "닭발", count: 0, price: 8000, image: menu1 },
+    { id: 2, name: "어묵탕", count: 0, price: 7000, image: menu2 },
+    { id: 3, name: "보쌈", count: 0, price: 12000, image: menu3 },
   ]);
 
   // 메뉴 수량 더하기
@@ -52,6 +56,7 @@ const OrderPage1 = () => {
     0
   );
 
+  
   return (
     <div className='app'>
       <Input 
@@ -67,28 +72,39 @@ const OrderPage1 = () => {
       <hr></hr>
       
       {menus.map((menu, index) => (
-        <div className="menu" key={menu.id}>
-          <h5>
-            {menu.name} {menu.count} 개
-            <Button
-              className="btn"
-              variant="contained"
-              onClick={() => handleDecrease(index)}
-              style={{ background: "red" }}
-            >
-              {" "}
-              -{" "}
-            </Button>
-            <Button
-              className="btn"
-              variant="contained"
-              onClick={() => handleIncrease(index)}
-            >
-              {" "}
-              +{" "}
-            </Button>
-          </h5>
-          <p>{menu.price} 원</p>
+        <div className="menu" key={menu.id} style={{alignItems: 'center' }}>
+          <div style={{ marginLeft: "-10px" }}>
+              <p>
+              <Card sx={{ maxWidth: 100, maxHeight: 100 }} style={{display:"inline-block"}}>
+              <CardMedia
+              component="img"
+              height="140"
+              image={menu.image}
+              alt={menu.name}
+              />
+              </Card>
+              <div style={{display:"inline-block", marginLeft:"10px"}}>
+                  <spen><b>{menu.name}</b><br/>{menu.price}원  {menu.count}개 </spen>
+              </div>
+              <Button
+                className="btn"
+                variant="contained"
+                onClick={() => handleDecrease(index)}
+                style={{ background: "red", float: "right"}}
+              >
+                {" "}
+                -{" "}
+              </Button>
+              <Button
+                className="btn"
+                variant="contained"
+                onClick={() => handleIncrease(index)}
+              >
+                {" "}
+                +{" "}
+              </Button>
+            </p>
+          </div>
         </div>
       ))}
 
@@ -97,11 +113,11 @@ const OrderPage1 = () => {
           position="static"
           style={{ height: "130px", display: "flex" }}
         >
-          <div className="bottom" >
-          <h4 style={{margin:"20px"}}>
-            총 수량: {totalCount}개 | 총 금액: {totalPrice}원
-          </h4>
-        </div>
+          <div>
+            <p style={{margin:"20px"}}>
+              총 수량: {totalCount}개 | 총 금액: {totalPrice}원 
+            </p>
+          </div>
           <center>
             <Button
               className="orderBt"
