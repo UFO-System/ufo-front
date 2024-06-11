@@ -48,7 +48,7 @@ function LogoutTopBar({ children, isLogin }) {
                   component="a"
                   sx={{
                     mr: 2,
-                    display: { xs: "flex", md: "none" },
+                    display: "flex",
                     fontFamily: "monospace",
                     fontWeight: 700,
                     fontSize: { xs: "15px", md: "18px" },
