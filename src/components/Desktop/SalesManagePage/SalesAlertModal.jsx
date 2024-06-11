@@ -38,6 +38,7 @@ export default function SalesAlertModal({ modalState }) {
           <Button
             variant={"contained"}
             sx={{ left: "50%", transform: "translate(-50%,0)" }}
+            onClick={() => handleClose()}
           >
             확인
           </Button>
