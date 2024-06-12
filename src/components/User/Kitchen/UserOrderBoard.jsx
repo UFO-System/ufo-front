@@ -1,13 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { Box } from "@mui/material";
 
-const UserOrderBoard = ({ values }) => {
-
+const UserOrderBoard = ({ values, index }) => {
   return (
     <Box
       sx={{
-        top: "-1vh",
-        color: "#3c2a2c",
         position: "relative",
         border: "3px solid #4D83BD",
         width: "80vw",
@@ -22,6 +19,26 @@ const UserOrderBoard = ({ values }) => {
         transition: "background-color 0.5s"
       }}
     >
+      <Box
+        sx={{
+          position: "absolute",
+          top: "-1vh",
+          left: "-3vh",
+          backgroundColor: "#efefef",
+          padding: "1vh",
+          borderRadius: "50%",
+          border: "3px solid #4D83BD",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "5vh",
+          height: "5vh",
+          fontWeight: "bolder",
+          fontSize: "1.5rem"
+        }}
+      >
+        {index}
+      </Box>
       <div>
         <div
           style={{
@@ -35,11 +52,11 @@ const UserOrderBoard = ({ values }) => {
         >
           <div>
             <span>Order No. {values[0].order_id}</span>
-            </div>
+          </div>
         </div>
       </div>
     </Box>
   );
 };
 
-export default UserOrderBoard
+export default UserOrderBoard;
