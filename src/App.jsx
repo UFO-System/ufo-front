@@ -20,6 +20,7 @@ import UserPage from "./components/User/UserPage";
 import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
 import QRManage from "./components/Desktop/QRManagePage/QRManage";
 import UserKitchenPage from "./components/User/Kitchen/UserKitchenPage";
+import KitchenTopBar from "./components/Desktop/commons/TopBar/KitchenTopBar";
 function App() {
   return (
     <Router>
@@ -142,7 +143,7 @@ function App() {
           path="/KitchenPage"
           element={
             <UserInfoProvider>
-              <PhoneTopBar />
+              <KitchenTopBar />
               <KitchenPage />
             </UserInfoProvider>
           }
