@@ -12,12 +12,6 @@ import UFO from "../../../../assets/UFO.png";
 function KitchenTopBar({ children, isLogin }) {
   const navigate = useNavigate();
   const { group } = useParams();
-  // 텍스트가 10자를 넘으면 말줄임표로 자르는 함수
-  const truncateText = (text, maxLength) => {
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
-      : text;
-  };
   return (
     <div className="notLoginTopBar">
       <AppBar position="static">

@@ -7,7 +7,8 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./css/Phone.css";
-
+import fork from "../../assets/silverware-fork-knife.png";
+import monitor from "../../assets/monitor.png";
 const Phone = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -43,7 +44,18 @@ const Phone = () => {
             height: isMobile ? "48vh" : "48vh",
           }}
         >
-          <Typography variant="h3">주문화면</Typography>
+          <Box
+            src={fork}
+            component="img"
+            style={{
+              width: "43px",
+              height: "43px",
+              marginRight: "8px",
+            }}
+          />
+          <Typography variant="h3" sx={{ fontSize: { xs: "40px" } }}>
+            주문하기
+          </Typography>
         </Button>
         <Button
           variant="contained"
@@ -53,7 +65,20 @@ const Phone = () => {
             height: isMobile ? "48vh" : "48vh",
           }}
         >
-          <Typography variant="h3">부엌화면</Typography>
+          <Box
+            src={monitor}
+            component="img"
+            style={{
+              display: "block",
+              width: "43px",
+              height: "43px",
+              marginRight: "8px",
+            }}
+          />
+
+          <Typography variant="h3" sx={{ fontSize: { xs: "40px" } }}>
+            오더 모니터링
+          </Typography>
         </Button>
       </Box>
     </div>
