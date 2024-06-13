@@ -7,6 +7,11 @@ import { useParams } from "react-router-dom";
 const UserPage = () => {
   const { group, tableid } = useParams();
   const navigate = useNavigate();
+
+  const handleKitchenPageClick = () => {
+    navigate("/UserKitchenPage");
+  };
+
   return (
     <div>
       <Box
@@ -33,7 +38,7 @@ const UserPage = () => {
         </Button>
         <Button
           variant="contained"
-          //   onClick={}
+          onClick={handleKitchenPageClick}
           sx={{
             width: "100%",
             height: isMobile ? "48vh" : "48vh",
