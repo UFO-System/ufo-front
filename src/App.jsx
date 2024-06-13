@@ -19,6 +19,7 @@ import PhoneTopBar from "./components/Desktop/commons/TopBar/PhoneTopBar";
 import UserPage from "./components/User/UserPage";
 import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
 import QRManage from "./components/Desktop/QRManagePage/QRManage";
+import UserKitchenPage from "./components/User/Kitchen/UserKitchenPage";
 import KitchenTopBar from "./components/Desktop/commons/TopBar/KitchenTopBar";
 function App() {
   return (
@@ -181,6 +182,18 @@ function App() {
             <>
               <LogoutTopBar />
               <UserPage />
+            </>
+          }
+        />
+        {/* 유저용 주방화면 */}
+        <Route
+          path="/UserKitchenPage"
+          element={
+            <>
+            <UserInfoProvider>
+              <LogoutTopBar />
+              <UserKitchenPage/>
+            </UserInfoProvider>
             </>
           }
         />
