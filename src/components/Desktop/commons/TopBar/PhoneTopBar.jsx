@@ -15,7 +15,7 @@ import { useContext, useState } from "react";
 import UFO from "../../../../assets/UFO.png";
 import { UserInfoContext } from "../../../../contexts/UserInfoContext";
 const menuLists = ["매출관리", "마이페이지", "로그아웃"];
-const pages = ["SalesManage", "MyPage", ""];
+const pages = ["PhoneSalesManage", "MyPage", ""];
 function PhoneTopBar({ children }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [, , removeCookie] = useCookies(["id"]);
