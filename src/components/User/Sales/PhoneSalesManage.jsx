@@ -1,18 +1,21 @@
 import { useEffect } from "react";
 import { Box } from "@mui/material";
-import SalesDateSelector from "./SalesDateSelector";
-import SalesDetailViewer from "./SalesDetailViewer";
-import SalesAlertModal from "./SalesAlertModal";
+
 import { isMobile } from "react-device-detect";
+import SalesAlertModal from "../../Desktop/SalesManagePage/SalesAlertModal";
+import SalesDateSelector from "../../Desktop/SalesManagePage/SalesDateSelector";
+import SalesDetailViewer from "../../Desktop/SalesManagePage/SalesDetailViewer";
+import SaleHourofDay from "./SaleHourofDay";
 const salesItem = [
   { time: "10:20", menu: "김치찜", price: 10000 },
   { time: "09:21", menu: "계란찜", price: 19900 },
   { time: "13:22", menu: "수육", price: 14950 },
 ];
 
-const SalesManage = () => {
+const PhoneSalesManage = () => {
   return (
     <>
+      {isMobile && <SalesAlertModal modalState={true} />}
       <Box sx={{ display: { md: "flex" } }}>
         <Box
           sx={{
@@ -36,11 +39,11 @@ const SalesManage = () => {
             width: { md: "60%" },
           }}
         >
-          <SalesDetailViewer data={salesItem} />
+          <SaleHourofDay data={salesItem} />
         </Box>
       </Box>
     </>
   );
 };
 
-export default SalesManage;
+export default PhoneSalesManage;

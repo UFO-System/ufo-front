@@ -21,6 +21,8 @@ import { isDesktop, isIOS, isMobile, isTablet } from "react-device-detect";
 import QRManage from "./components/Desktop/QRManagePage/QRManage";
 import UserKitchenPage from "./components/User/Kitchen/UserKitchenPage";
 import KitchenTopBar from "./components/Desktop/commons/TopBar/KitchenTopBar";
+import DetailUserOrderFoods from "./components/User/UserOrderFoods/DetailUserOrderFoods";
+import PhoneSalesManage from "./components/User/Sales/PhoneSalesManage";
 function App() {
   return (
     <Router>
@@ -56,6 +58,7 @@ function App() {
             </UserInfoProvider>
           }
         />
+        {/* 컴퓨터 화면 시작 */}
         {/* 주문관리 */}
         <Route
           path="/OrderManage"
@@ -83,17 +86,8 @@ function App() {
           path="/SalesManage"
           element={
             <UserInfoProvider>
-              {isMobile || isTablet ? (
-                <>
-                  <PhoneTopBar />
-                  <SalesManage />
-                </>
-              ) : (
-                <>
-                  <TopBar />
-                  <SalesManage />
-                </>
-              )}
+              <TopBar />
+              <SalesManage />
             </UserInfoProvider>
           }
         />
@@ -127,8 +121,9 @@ function App() {
             </UserInfoProvider>
           }
         />
-
-        {/* 폰화면 */}
+        {/* 컴퓨터 화면 끝 */}
+        {/* 모바일 화면 시작  */}
+        {/* 폰화면  */}
         <Route
           path="/Phone"
           element={
@@ -148,6 +143,19 @@ function App() {
             </UserInfoProvider>
           }
         />
+
+        {/* 모바일 매출관리 */}
+        <Route
+          path="/PhoneSalesManage"
+          element={
+            <>
+              <UserInfoProvider>
+                <PhoneTopBar />
+                <PhoneSalesManage />
+              </UserInfoProvider>
+            </>
+          }
+        />
         {/* 주문 화면 */}
         <Route
           path="/OrderPage1"
@@ -158,6 +166,7 @@ function App() {
             </UserInfoProvider>
           }
         />
+
         <Route
           path="/OrderPage2"
           element={
@@ -176,6 +185,8 @@ function App() {
             </UserInfoProvider>
           }
         />
+        {/* 모바일 화면 끝  */}
+        {/* 유저화면 시작 */}
         <Route
           path="/:group/:tableid"
           element={
@@ -190,14 +201,27 @@ function App() {
           path="/UserKitchenPage"
           element={
             <>
-            <UserInfoProvider>
-              <LogoutTopBar />
-              <UserKitchenPage/>
-            </UserInfoProvider>
+              <UserInfoProvider>
+                <LogoutTopBar />
+                <UserKitchenPage />
+              </UserInfoProvider>
+            </>
+          }
+        />
+
+        <Route
+          path="/:group/:tableid/DetailUserOrderFoods"
+          element={
+            <>
+              <UserInfoProvider>
+                <PhoneTopBar />
+                <DetailUserOrderFoods />
+              </UserInfoProvider>
             </>
           }
         />
       </Routes>
+      {/* 유저화면 끝 */}
     </Router>
   );
 }
