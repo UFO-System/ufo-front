@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
   Table,
   TableBody,
@@ -13,12 +14,21 @@ import {
   TextField,
 } from "@mui/material";
 import axios from "axios";
-
+import firebase from "../../../../firebase";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { UserInfoContext } from "../../../contexts/UserInfoContext";
 const RecipeManage = () => {
+  const [newMenu, setNewMenu] = useState("");
+  const [newPrice, setNewPrice] = useState("");
+  const [newImage, setNewImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat("ko-KR").format(price) + "원";
   };
-
+  const { group } = useContext(UserInfoContext);
+  const storage = getStorage();
+  const storageRef = ref(storage, group + "/" + newMenu);
   const [data, setData] = useState([
     {
       name: "어묵탕",
@@ -97,11 +107,6 @@ const RecipeManage = () => {
 
   const menus = stableSort(data, getComparator(order, orderBy));
 
-  const [newMenu, setNewMenu] = useState("");
-  const [newPrice, setNewPrice] = useState("");
-  const [newImage, setNewImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-
   const handleDelete = (name) => {
     const confirmDelete = window.confirm("정말로 삭제하시겠습니까?");
     if (confirmDelete) {
@@ -127,6 +132,16 @@ const RecipeManage = () => {
     formData.append("price", newPrice);
     formData.append("image", newImage);
 
+    // useEffect(() => {
+    //   if (newImage) {
+    //     const reader = new FileReader();
+    //     reader.onload = (event) => {
+    //       setImagePreview(event.target.result);
+    //     };
+    //     reader.readAsDataURL(newImage);
+    //   }
+    // }, [newImage]);
+
     axios
       .post("/api/menus", formData)
       .then((response) => {
@@ -146,6 +161,10 @@ const RecipeManage = () => {
       .catch((error) => {
         console.error("Error uploading image: ", error);
       });
+    ///사진 firebase에 전송
+    uploadBytes(storageRef, newImage).then((snapshot) => {
+      console.log("Uploaded a blob or file!");
+    });
   };
 
   const handleImageChange = (event) => {
