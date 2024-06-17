@@ -90,7 +90,7 @@ function LogoutTopBar({ children, isLogin }) {
                 >
                   {truncateText(group, 7)}
                   <br />
-                  <Box sx={{ float: "right", mt: "5px", mb: "-20px" }}>
+                  <Box sx={{ float: "right", mt: "5px", mb: "-5px" }}>
                     {tableid}번 테이블
                   </Box>
                 </Typography>
