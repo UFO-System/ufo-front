@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import React from "react";
 import AppBar from "@mui/material/AppBar";
 import OrderPage1 from "./OrderPage1";
@@ -13,16 +14,17 @@ const OrderPage2 = () => {
   const name = location.state.name; // 로고 이름
   const value1 = location.state.value1; // 입금자 명
   //const value2 = location.state.value2 // 테이블 넘버
-
+  const { group, tableid } = useParams();
   const navigate = useNavigate();
   return (
-    
-    <div className='app'>
+    <div className="app">
       {/* <AppBar position="static">
       <h4 className='name'>{name}</h4>
       </AppBar> */}
-      <div className='textdiv'>
-        <p><b>입금자 명: {value1}</b></p>
+      <div className="textdiv">
+        <p>
+          <b>입금자 명: {value1}</b>
+        </p>
         {/* <p><b>테이블 넘버: {value2}</b></p> */}
         <p>
           <b>총 가격: {total} 원</b>
@@ -77,9 +79,14 @@ const OrderPage2 = () => {
               style={{ color: "white", boxShadow: "1px 1px 5px black" }}
               onClick={() => {
                 if (window.confirm("주문을 하시겠습니까?")) {
-                  navigate("/OrderPage3", {
-                    state: { total: total, value1: value1, name: name },
-                  });
+                  navigate(
+                    group === null
+                      ? "/OrderPage3"
+                      : `/${group}/${tableid}/UserOrderPage3`,
+                    {
+                      state: { total: total, value1: value1, name: name },
+                    }
+                  );
                 } else {
                   //아니요
                 }

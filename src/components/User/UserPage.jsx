@@ -35,7 +35,7 @@ const UserPage = () => {
       >
         <Button
           variant="contained"
-          onClick={() => navigate("/OrderPage1")}
+          onClick={() => navigate(`/${group}/${tableid}/UserOrderPage1`)}
           sx={{
             width: "100%",
             height: isMobile ? "20vh" : "20vh",
