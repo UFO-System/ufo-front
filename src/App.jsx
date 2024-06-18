@@ -208,13 +208,41 @@ function App() {
             </>
           }
         />
+        {/* 주문 화면 */}
+        <Route
+          path="/:group/:tableid/UserOrderPage1"
+          element={
+            <>
+              <LogoutTopBar />
+              <OrderPage1 />
+            </>
+          }
+        />
 
+        <Route
+          path="/:group/:tableid/UserOrderPage2"
+          element={
+            <>
+              <LogoutTopBar />
+              <OrderPage2 />
+            </>
+          }
+        />
+        <Route
+          path="/:group/:tableid/UserOrderPage3"
+          element={
+            <>
+              <LogoutTopBar />
+              <OrderPage3 />
+            </>
+          }
+        />
         <Route
           path="/:group/:tableid/DetailUserOrderFoods"
           element={
             <>
               <UserInfoProvider>
-                <PhoneTopBar />
+                <LogoutTopBar />
                 <DetailUserOrderFoods />
               </UserInfoProvider>
             </>

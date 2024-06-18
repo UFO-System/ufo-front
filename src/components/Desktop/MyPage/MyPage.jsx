@@ -11,7 +11,7 @@ export default function MyPage() {
 
   //기본 정보 통신으로 받아와야함
   const [userData, setUserData] = useState({
-    id: "testId",
+    id: "hojin",
     pw: "",
     pwCheck: "",
     userName: "김ㅇㅇ",

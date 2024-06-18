@@ -4,11 +4,11 @@ import AppBar from "@mui/material/AppBar";
 import Input from "@mui/material/Input";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./css/OrderPage.css";
-import menu1 from  "./css/menu1.jpg"
-import menu2 from  "./css/menu2.jpg"
-import menu3 from  "./css/menu3.jpg"
+import menu1 from "./css/menu1.jpg";
+import menu2 from "./css/menu2.jpg";
+import menu3 from "./css/menu3.jpg";
 const OrderPage1 = () => {
   // 매장 이름
   const name = "UFO";
@@ -56,11 +56,11 @@ const OrderPage1 = () => {
     0
   );
 
-  
+  const { group, tableid } = useParams();
   return (
-    <div className='app'>
-      <Input 
-        className='input'
+    <div className="app">
+      <Input
+        className="input"
         placeholder="입금자 이름을 입력하세요."
         type="text"
         value={value1}
@@ -70,27 +70,34 @@ const OrderPage1 = () => {
         <p style={{ color: "red" }}>입금자 이름을 입력해주세요.</p>
       )}
       <hr></hr>
-      
+
       {menus.map((menu, index) => (
-        <div className="menu" key={menu.id} style={{alignItems: 'center' }}>
+        <div className="menu" key={menu.id} style={{ alignItems: "center" }}>
           <div style={{ marginLeft: "-10px" }}>
-              <p>
-              <Card sx={{ maxWidth: 100, maxHeight: 100 }} style={{display:"inline-block"}}>
-              <CardMedia
-              component="img"
-              height="140"
-              image={menu.image}
-              alt={menu.name}
-              />
+            <p>
+              <Card
+                sx={{ maxWidth: 100, maxHeight: 100 }}
+                style={{ display: "inline-block" }}
+              >
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={menu.image}
+                  alt={menu.name}
+                />
               </Card>
-              <div style={{display:"inline-block", marginLeft:"10px"}}>
-                  <spen><b>{menu.name}</b><br/>{menu.price}원  {menu.count}개 </spen>
+              <div style={{ display: "inline-block", marginLeft: "10px" }}>
+                <spen>
+                  <b>{menu.name}</b>
+                  <br />
+                  {menu.price}원 {menu.count}개{" "}
+                </spen>
               </div>
               <Button
                 className="btn"
                 variant="contained"
                 onClick={() => handleDecrease(index)}
-                style={{ background: "red", float: "right"}}
+                style={{ background: "red", float: "right" }}
               >
                 {" "}
                 -{" "}
@@ -109,13 +116,10 @@ const OrderPage1 = () => {
       ))}
 
       <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
-        <AppBar
-          position="static"
-          style={{ height: "130px", display: "flex" }}
-        >
+        <AppBar position="static" style={{ height: "130px", display: "flex" }}>
           <div>
-            <p style={{margin:"20px"}}>
-              총 수량: {totalCount}개 | 총 금액: {totalPrice}원 
+            <p style={{ margin: "20px" }}>
+              총 수량: {totalCount}개 | 총 금액: {totalPrice}원
             </p>
           </div>
           <center>
@@ -126,7 +130,9 @@ const OrderPage1 = () => {
                   alert("입금자 이름을 입력해주세요");
                 } else {
                   navigate(
-                    "/OrderPage2",
+                    group === null
+                      ? "/OrderPage2"
+                      : `/${group}/${tableid}/UserOrderPage2`,
                     {
                       state: {
                         total: totalPrice,

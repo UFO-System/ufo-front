@@ -1,7 +1,7 @@
 import { Button, ButtonGroup, Typography } from "@mui/material";
 import React from "react";
 
-export default function OrderFoodIndicator({ size }) {
+export default function OrderFoodIndicator({ size, state }) {
   return (
     <ButtonGroup variant="outlined" size={size}>
       <Button disabled sx={{ color: "black", background: "red" }}>
@@ -16,7 +16,7 @@ export default function OrderFoodIndicator({ size }) {
           )}
         </Typography>
       </Button>
-      <Button disabled sx={{ color: "black", background: "yellow" }}>
+      <Button disabled sx={{ color: "black", background: "gray" }}>
         <Typography sx={{ color: "black" }}>
           {size === "small" ? (
             <>
@@ -28,7 +28,7 @@ export default function OrderFoodIndicator({ size }) {
           )}
         </Typography>
       </Button>
-      <Button disabled sx={{ color: "black", background: "green" }}>
+      <Button disabled sx={{ color: "black", background: "gray" }}>
         <Typography sx={{ color: "black" }}>
           {size === "small" ? (
             <>
