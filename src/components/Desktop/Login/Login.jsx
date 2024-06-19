@@ -7,25 +7,28 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import LockIcon from "@mui/icons-material/Lock";
+import Loading from "../../commons/Loading/Loading";
+import { UserInfoContext } from "../../../contexts/UserInfoContext";
 
 const Login = () => {
+  const { setUserInfo } = useContext(UserInfoContext);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const navigate = useNavigate();
-  // 쿠키에 사용자 정보가 있는지 확인
-  const [, setCookie] = useCookies(["user"]);
   //비밀번호 focus blur
-
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword((show) => !show);
   };
+  const [isLoading, setIsLoading] = useState(false);
+  // 쿠키에 사용자 정보가 있는지 확인
+  const [, setCookie] = useCookies(["user"]);
 
   //입력한 로그인 정보가 맞는지 서버와 통신
   const loginCheck = () => {
@@ -41,15 +44,22 @@ const Login = () => {
           alert("비밀번호를 입력해 주세요");
           return;
         default:
+          setIsLoading(true);
           console.log("전송"); //전송
           setCookie("user", { id });
-          navigate("/Main");
+          //테스트 코드
+          setUserInfo({ id: id });
+          setTimeout(() => {
+            navigate("/Main");
+          }, 1000);
+          // setIsLoading(false);
           return;
       }
     }
   };
   return (
     <>
+      <Loading isLoading={isLoading} />
       <table
         style={{
           margin: "auto",

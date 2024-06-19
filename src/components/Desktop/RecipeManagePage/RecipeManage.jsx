@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
   Table,
   TableBody,
@@ -6,151 +7,297 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
   Paper,
   Button,
   Typography,
+  TableSortLabel,
+  TextField,
 } from "@mui/material";
-
+import axios from "axios";
+import firebase from "../../../../firebase";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { UserInfoContext } from "../../../contexts/UserInfoContext";
 const RecipeManage = () => {
-  const [menus, setMenus] = useState([
-    "어묵탕",
-    "닭발",
-    "만두",
-    "김치찜",
-    "김치전",
-    "파전",
-    "닭볶음탕",
-    "가라아게",
-    "계란찜",
-    "주먹밥",
-    "라면",
-    "음료",
-  ]);
-
   const [newMenu, setNewMenu] = useState("");
   const [newPrice, setNewPrice] = useState("");
-  const [newImage, setNewImage] = useState("");
+  const [newImage, setNewImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
-  const handleDelete = (index) => {
-    const updatedMenus = [...menus];
-    updatedMenus.splice(index, 1);
-    setMenus(updatedMenus);
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("ko-KR").format(price) + "원";
+  };
+  const { group } = useContext(UserInfoContext);
+  const storage = getStorage();
+  const storageRef = ref(storage, group + "/" + newMenu);
+  const [data, setData] = useState([
+    {
+      name: "어묵탕",
+      price: 5000,
+      image: "어묵탕 이미지 경로",
+      addedDate: new Date(),
+    },
+    {
+      name: "닭발",
+      price: 7000,
+      image: "닭발 이미지 경로",
+      addedDate: new Date(),
+    },
+    {
+      name: "계란찜",
+      price: 3000,
+      image: "계란찜 이미지 경로",
+      addedDate: new Date(),
+    },
+    {
+      name: "수육",
+      price: 12000,
+      image: "수육 이미지 경로",
+      addedDate: new Date(),
+    },
+    {
+      name: "나베",
+      price: 15000,
+      image: "나베 이미지 경로",
+      addedDate: new Date(),
+    },
+    {
+      name: "파전",
+      price: 10000,
+      image: "파전 이미지 경로",
+      addedDate: new Date(),
+    },
+  ]);
+
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("");
+
+  const handleRequestSort = (property) => {
+    let newOrderBy = property;
+    let newOrder = "desc";
+
+    if (orderBy === property && order === "desc") {
+      newOrder = "asc";
+    }
+
+    setOrder(newOrder);
+    setOrderBy(newOrderBy);
+  };
+
+  const descendingComparator = (a, b, orderBy) => {
+    if (b[orderBy] < a[orderBy]) return -1;
+    if (b[orderBy] > a[orderBy]) return 1;
+    return 0;
+  };
+
+  const stableSort = (array, comparator) => {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order !== 0) return order;
+      return a[1] - b[1];
+    });
+    return stabilizedThis.map((el) => el[0]);
+  };
+
+  const getComparator = (order, orderBy) => {
+    return order === "desc"
+      ? (a, b) => descendingComparator(a, b, orderBy)
+      : (a, b) => -descendingComparator(a, b, orderBy);
+  };
+
+  const menus = stableSort(data, getComparator(order, orderBy));
+
+  const handleDelete = (name) => {
+    const confirmDelete = window.confirm("정말로 삭제하시겠습니까?");
+    if (confirmDelete) {
+      const updatedMenus = data.filter((menu) => menu.name !== name);
+      setData(updatedMenus);
+    }
   };
 
   const handleAddMenu = () => {
-    if (
-      newMenu.trim() === "" ||
-      newPrice.trim() === "" ||
-      newImage.trim() === ""
-    ) {
+    if (newMenu.trim() === "" || newPrice.trim() === "" || newImage === null) {
       alert("모든 필드를 입력하세요.");
       return;
     }
 
-    const updatedMenus = [
-      ...menus,
-      { name: newMenu, price: newPrice, image: newImage },
-    ];
-    setMenus(updatedMenus);
+    const isDuplicateMenu = menus.some((menu) => menu.name === newMenu);
+    if (isDuplicateMenu) {
+      alert("이미 존재하는 메뉴입니다.");
+      return;
+    }
 
-    // 입력 필드 초기화
-    setNewMenu("");
-    setNewPrice("");
-    setNewImage("");
+    const formData = new FormData();
+    formData.append("name", newMenu);
+    formData.append("price", newPrice);
+    formData.append("image", newImage);
+
+    // useEffect(() => {
+    //   if (newImage) {
+    //     const reader = new FileReader();
+    //     reader.onload = (event) => {
+    //       setImagePreview(event.target.result);
+    //     };
+    //     reader.readAsDataURL(newImage);
+    //   }
+    // }, [newImage]);
+
+    axios
+      .post("/api/menus", formData)
+      .then((response) => {
+        const updatedMenu = {
+          name: newMenu,
+          price: parseInt(newPrice),
+          image: URL.createObjectURL(newImage),
+          addedDate: new Date(),
+        };
+        const updatedMenus = [...data, updatedMenu];
+        setData(updatedMenus);
+        setNewMenu("");
+        setNewPrice("");
+        setNewImage(null);
+        setImagePreview(null);
+      })
+      .catch((error) => {
+        console.error("Error uploading image: ", error);
+      });
+    ///사진 firebase에 전송
+    uploadBytes(storageRef, newImage).then((snapshot) => {
+      console.log("Uploaded a blob or file!");
+    });
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setNewImage(file);
+    setImagePreview(URL.createObjectURL(file));
   };
 
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-        }}
-      >
-        <div style={{ width: "50%", height: "80vh", overflow: "auto" }}>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell
-                    style={{ backgroundColor: "#002884", color: "white" }}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        width: "100%",
+      }}
+    >
+      <div style={{ width: "50%", height: "80vh", overflow: "auto" }}>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  colSpan={3}
+                  align="center"
+                  sx={{ backgroundColor: "#002884", color: "white" }}
+                >
+                  현재 메뉴
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === "name"}
+                    direction={orderBy === "name" ? order : "asc"}
+                    onClick={() => handleRequestSort("name")}
                   >
                     <Typography variant="h7" gutterBottom>
-                      현재메뉴
+                      메뉴
+                    </Typography>
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === "price"}
+                    direction={orderBy === "price" ? order : "asc"}
+                    onClick={() => handleRequestSort("price")}
+                  >
+                    <Typography variant="h7" gutterBottom>
+                      가격
+                    </Typography>
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h7" gutterBottom>
+                    비고
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {menus.map((menu) => (
+                <TableRow key={menu.name}>
+                  <TableCell>
+                    <Typography variant="h6" gutterBottom>
+                      {menu.name}
                     </Typography>
                   </TableCell>
-                  <TableCell
-                    style={{ backgroundColor: "#002884", color: "white" }}
-                  >
-                    <Typography variant="h7" gutterBottom>
-                      비고
+                  <TableCell>
+                    <Typography variant="h6" gutterBottom>
+                      {formatPrice(menu.price)}
                     </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      onClick={() => handleDelete(menu.name)}
+                      variant="contained"
+                      color="error"
+                    >
+                      x
+                    </Button>
                   </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {menus.map((menu, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      <Typography variant="h6" gutterBottom>
-                        {menu}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        onClick={() => handleDelete(index)}
-                        variant="contained"
-                        color="error"
-                      >
-                        x
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-        <div style={{ width: "40%", margin: "50px" }}>
-          <Paper elevation={3} style={{ padding: "20px" }}>
-            <Typography variant="h5" gutterBottom>
-              추가할 메뉴
-            </Typography>
-            <TextField
-              label="메뉴명"
-              value={newMenu}
-              onChange={(e) => setNewMenu(e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="가격"
-              value={newPrice}
-              onChange={(e) => setNewPrice(e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="이미지"
-              value={newImage}
-              onChange={(e) => setNewImage(e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-            <Button
-              onClick={handleAddMenu}
-              variant="contained"
-              color="primary"
-              style={{ marginTop: "20px" }}
-            >
-              추가하기
-            </Button>
-          </Paper>
-        </div>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
-    </>
+
+      <div style={{ width: "40%", margin: "50px" }}>
+        <Paper elevation={3} style={{ padding: "20px" }}>
+          <Typography variant="h5" gutterBottom>
+            추가할 메뉴
+          </Typography>
+          <TextField
+            label="메뉴명"
+            value={newMenu}
+            onChange={(e) => setNewMenu(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="가격"
+            value={newPrice}
+            onChange={(e) => setNewPrice(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <div style={{ marginTop: "20px" }}>
+            <input
+              accept="image/*"
+              type="file"
+              onChange={handleImageChange}
+              style={{ display: "block" }}
+            />
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                style={{ marginTop: "20px", maxWidth: "100%" }}
+              />
+            )}
+          </div>
+          <Button
+            onClick={handleAddMenu}
+            variant="contained"
+            color="primary"
+            style={{ marginTop: "20px" }}
+          >
+            추가하기
+          </Button>
+        </Paper>
+      </div>
+    </div>
   );
 };
 
