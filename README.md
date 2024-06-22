@@ -102,6 +102,15 @@
 ### 상세 주문 내역 확인
 <img src="https://github.com/hojin535/ufo-front/assets/123153695/c258047f-9c2f-4b60-acc9-bd82394de1a9"  width="200" height="400"/>
 
+## 개발 환경
+
+- 사용 언어: HTML, CSS, React(v18.2.66)
+- 스타일링: MUI(Material-UI)(v5.15.20)
+- 개발 도구 및 IDE: Visual Studio Code, Vite(v5.2.0)
+- 버전 관리 시스템: Git, GitHub
+- 패키지 매니저: npm(v20.11.1)
+- 빌드 도구: Vite(v5.2.0)
+- 기타 도구: ESLint, Pettier, Axios
 
 ## 시작 가이드
 설치 필요
