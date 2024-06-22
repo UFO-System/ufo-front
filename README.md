@@ -3,9 +3,9 @@
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"></a>
 
-FrontEnd 개발자
-팀장 : 김호진
-팀원 : 배준재,옥준서,모정환
+FrontEnd 개발자<br/>
+팀장 : 김호진<br/>
+팀원 : 배준재,옥준서,모정환<br/>
 
 프로젝트 소개: 기존 축제 또는 행사에서의 사업자 등록 없이 계좌이체로 계산하는 시스템을 적은 인력으로도 운영할 수 있게 도와주는 편한 서비스
 
