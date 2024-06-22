@@ -104,13 +104,19 @@
 
 ## 개발 환경
 
-- 사용 언어: HTML, CSS, React(v18.2.66)
-- 스타일링: MUI(Material-UI)(v5.15.20)
-- 개발 도구 및 IDE: Visual Studio Code, Vite(v5.2.0)
-- 버전 관리 시스템: Git, GitHub
-- 패키지 매니저: npm(v20.11.1)
-- 빌드 도구: Vite(v5.2.0)
-- 기타 도구: ESLint, Pettier, Axios
+- HTML, CSS, React(v18.2.66): 사용 언어
+- MUI(Material-UI)(v5.15.20): 스타일링
+- Visual Studio Code,Vite(v5.2.0): 개발 도구 및 IDE
+- Git, GitHub: 버전 관리 시스템
+- npm(v20.11.1): 패키지 매니저
+- ESLint, Prettier  기타 도구
+- Firebase(v10.12.2): 사진DB 연동을 위한 라이브러리
+- axios(v,1,7,2): 서버 통신용 라이브러리
+- react-qr-code (v2.0.13): 테이블 QR코드 생성용 라이브러리
+- jszip (v3.10.1): QR코드 사진 압축용 라이브러리
+- file-saver(v2.0.5):압축파일 파일 저장용 라이브러리
+- react-device-detect(v2.2.3): 적응형 페이지를 위한 사용자 기기인식 라이브러리
+- react-router-dom(v6.22.3): 클라이언트 측 라우팅을 위한 라이브러리
 
 ## 시작 가이드
 설치 필요
