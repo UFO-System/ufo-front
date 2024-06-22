@@ -138,8 +138,17 @@ function App() {
           path="/KitchenPage"
           element={
             <UserInfoProvider>
-              <KitchenTopBar />
-              <KitchenPage />
+              {isDesktop || isTablet ? (
+                <>
+                  <KitchenTopBar />
+                  <KitchenPage />
+                </>
+              ) : (
+                <>
+                  <PhoneTopBar />
+                  <UserKitchenPage />
+                </>
+              )}
             </UserInfoProvider>
           }
         />
@@ -198,7 +207,7 @@ function App() {
         />
         {/* 유저용 주방화면 */}
         <Route
-          path="/UserKitchenPage"
+          path="UserKitchenPage"
           element={
             <>
               <UserInfoProvider>
