@@ -45,7 +45,7 @@ FrontEnd 개발자<br/>
 
 ## 관리자 데스크톱
 ### 로그인 / 회원가입
-![image](https://github.com/hojin535/ufo-front/assets/123153695/f8abcefb-07e9-42fb-bbd5-3d94f19948c7)
+![image](./images/Desktop/로그인화면.png)
 ![image](https://github.com/hojin535/ufo-front/assets/123153695/ec8bbd69-f74c-414b-a850-3f149feb3530)
 
 ### 주문 결제 관리
